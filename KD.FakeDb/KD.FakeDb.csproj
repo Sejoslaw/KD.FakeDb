@@ -6,6 +6,7 @@
     <AssemblyOriginatorKeyFile>KD.FakeDb.snk</AssemblyOriginatorKeyFile>
     <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
 </Project>
