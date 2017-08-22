@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>KD.FakeDb.snk</AssemblyOriginatorKeyFile>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
