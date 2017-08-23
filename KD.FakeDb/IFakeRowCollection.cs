@@ -1,9 +1,11 @@
-﻿namespace KD.FakeDb
+﻿using System.Collections.Generic;
+
+namespace KD.FakeDb
 {
     /// <summary>
     /// Describes a collection of <see cref="IFakeRow"/>'s inside <see cref="IFakeTable"/>.
     /// </summary>
-    public interface IFakeRowCollection
+    public interface IFakeRowCollection : IEnumerable<IFakeRow>
     {
         /// <summary>
         /// Returns <see cref="IFakeRow"/> from given Row index if Row exists; otherwise <see cref="System.ArgumentException"/> will be thrown.

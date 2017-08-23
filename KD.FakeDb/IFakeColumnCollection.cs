@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KD.FakeDb
 {
     /// <summary>
     /// Describes a collection of <see cref="IFakeColumn"/>'s inside <see cref="IFakeTable"/>.
     /// </summary>
-    public interface IFakeColumnCollection
+    public interface IFakeColumnCollection : IEnumerable<IFakeColumn>
     {
         /// <summary>
         /// Returns <see cref="IFakeColumn"/> from given Column name if Column exists; otherwise <see cref="System.ArgumentException"/> will be thrown.

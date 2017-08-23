@@ -1,9 +1,11 @@
-﻿namespace KD.FakeDb
+﻿using System.Collections.Generic;
+
+namespace KD.FakeDb
 {
     /// <summary>
     /// Describes single Row in <see cref="IFakeTable"/>.
     /// </summary>
-    public interface IFakeRow
+    public interface IFakeRow : IEnumerable<object>
     {
         /// <summary>
         /// Returns the value in this <see cref="IFakeRow"/> from specified <see cref="IFakeColumn"/>. If column don't exists <see cref="System.ArgumentException"/> wil be thrown.

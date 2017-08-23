@@ -1,9 +1,11 @@
-﻿namespace KD.FakeDb
+﻿using System.Collections.Generic;
+
+namespace KD.FakeDb
 {
     /// <summary>
     /// Describes a collection of <see cref="IFakeTable"/>'s inside <see cref="IFakeDatabase"/>.
     /// </summary>
-    public interface IFakeTableCollection
+    public interface IFakeTableCollection : IEnumerable<IFakeTable>
     {
         /// <summary>
         /// Returns <see cref="IFakeTable"/> from given Table name if Table exists; otherwise <see cref="System.ArgumentException"/> will be thrown.
