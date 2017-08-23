@@ -4,6 +4,16 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <Authors>Krzysztof Dobrzynski</Authors>
+
+    <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
+
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb</PackageProjectUrl>
+
+    <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+
+    <Copyright>https://github.com/Sejoslaw</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
