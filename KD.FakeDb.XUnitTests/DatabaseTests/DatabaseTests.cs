@@ -15,13 +15,16 @@ namespace KD.FakeDb.XUnitTests.DatabaseTests
             accTable.AddColumn("FirstName", typeof(string));
             accTable.AddColumn("LastName", typeof(string));
 
-            IFakeRow fakeRow = new FakeRow(accTable, 1);
+            // Row is dynamically created when getting
+            // Note that before this there wasn't any Row at index 1
+            IFakeRow fakeRow = accTable.GetRow(1);
             fakeRow["Id"] = Guid.NewGuid();
             fakeRow["FirstName"] = "Krzysztof";
             fakeRow["LastName"] = "Dobrzynski";
 
             Assert.Equal(3, accTable.ColumnCollection.Count);
             Assert.Equal(1, accTable.RowCollection.Count);
+            Assert.Equal("Krzysztof", accTable.GetRow(1)["FirstName"]);
         }
     }
 }
