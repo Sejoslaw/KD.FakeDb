@@ -11,8 +11,10 @@ namespace KD.FakeDb
     {
         /// <summary>
         /// Represents a collection of objects in single <see cref="IFakeColumn"/>.
+        /// Key - Column Index
+        /// Value - Connected Value on this index
         /// </summary>
-        private List<object> objects = new List<object>();
+        private IDictionary<int, object> objects;
 
         public object this[int index]
         {
@@ -50,11 +52,13 @@ namespace KD.FakeDb
             this.Table = table;
             this.Name = columnName;
             this.Type = columnObjectType;
+
+            this.objects = new Dictionary<int, object>();
         }
 
         public IEnumerator<object> GetEnumerator()
         {
-            return this.objects.GetEnumerator();
+            return this.objects.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
