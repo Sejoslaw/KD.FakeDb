@@ -26,3 +26,4 @@ TODO:
 - [ ] Added importing / exporting Fake Database to / from JSON.
 - [ ] Added importing / exporting Fake Database to / from Excel File Format or other File Format.
 - [ ] Added importing / exporting Fake Database to / from CRM.
+- [ ] Add support for SQL Query and SqlClient.
