@@ -20,7 +20,14 @@ namespace KD.FakeDb
         {
             get
             {
-                return this.objects[index];
+                try
+                {
+                    return this.objects[index];
+                }
+                catch(KeyNotFoundException ex)
+                {
+                    throw new KeyNotFoundException(string.Format("The given key ({0}) was not present in the dictionary.", index));
+                }
             }
             set
             {

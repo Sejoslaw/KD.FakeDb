@@ -9,6 +9,7 @@ namespace KD.FakeDb.XUnitTests.FactoryTests
         public void Was_Fake_Database_successfully_created()
         {
             var database = FakeDatabaseFactory.NewDatabase();
+
             Assert.NotNull(database);
         }
     }

@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb", "KD.FakeDb\KD.FakeDb.csproj", "{9E588B3E-E840-4A95-B3F6-F35E3C6D1402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Factory", "KD.FakeDb.Factory\KD.FakeDb.Factory.csproj", "{9E7035F7-359E-4484-B7C2-C900426D828C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Factory", "KD.FakeDb.Factory\KD.FakeDb.Factory.csproj", "{9E7035F7-359E-4484-B7C2-C900426D828C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.XUnitTests", "KD.FakeDb.XUnitTests\KD.FakeDb.XUnitTests.csproj", "{D1D856A0-32D8-4FF3-9FA9-4A8E126EB8C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.XUnitTests", "KD.FakeDb.XUnitTests\KD.FakeDb.XUnitTests.csproj", "{D1D856A0-32D8-4FF3-9FA9-4A8E126EB8C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Linq", "KD.FakeDb.Linq\KD.FakeDb.Linq.csproj", "{6C86E467-DF11-4575-9132-520F3B377A58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D1D856A0-32D8-4FF3-9FA9-4A8E126EB8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1D856A0-32D8-4FF3-9FA9-4A8E126EB8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1D856A0-32D8-4FF3-9FA9-4A8E126EB8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C86E467-DF11-4575-9132-520F3B377A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C86E467-DF11-4575-9132-520F3B377A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C86E467-DF11-4575-9132-520F3B377A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C86E467-DF11-4575-9132-520F3B377A58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

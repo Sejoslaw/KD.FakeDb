@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KD.FakeDb.Factory\KD.FakeDb.Factory.csproj" />
+    <ProjectReference Include="..\KD.FakeDb.Linq\KD.FakeDb.Linq.csproj" />
     <ProjectReference Include="..\KD.FakeDb\KD.FakeDb.csproj" />
   </ItemGroup>
 
