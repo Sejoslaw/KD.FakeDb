@@ -21,16 +21,25 @@ namespace KD.FakeDb.XUnitTests
             var db = FakeDatabaseFactory.NewDatabase();
 
             var accTable = db.AddTable("Accounts");
-
-            accTable.AddColumn("Id", typeof(Guid));
+            accTable.AddColumn("AccountId", typeof(Guid));
             accTable.AddColumn("FirstName", typeof(string));
             accTable.AddColumn("LastName", typeof(string));
+            accTable.AddColumn("CountryName", typeof(string));
             {
-                // Add rows to Account Table
                 var fakeRow = accTable.GetRow(0);
-                fakeRow["Id"] = Guid.NewGuid();
+                fakeRow["AccountId"] = Guid.NewGuid();
                 fakeRow["FirstName"] = "Krzysztof";
                 fakeRow["LastName"] = "Dobrzynski";
+                fakeRow["CountryName"] = "Poland";
+            }
+
+            var countryTable = db.AddTable("Countries");
+            countryTable.AddColumn("CountryId", typeof(Guid));
+            countryTable.AddColumn("CountryName", typeof(string));
+            {
+                var fakeRow = countryTable.GetRow(0);
+                fakeRow["CountryId"] = Guid.NewGuid();
+                fakeRow["CountryName"] = "Poland";
             }
 
             return db;
