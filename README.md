@@ -25,9 +25,10 @@ DONE:
 TODO:
 ---
 
-- [ ] Finish including remade Linq methods (Select, Join, OrderBy, Where, etc.)
+- [ ] Finish including remade Linq methods (Select, OrderBy, etc.)
 - [ ] Added importing / exporting Fake Database to / from XML.
 - [ ] Added importing / exporting Fake Database to / from JSON.
 - [ ] Added importing / exporting Fake Database to / from Excel File Format or other File Format.
 - [ ] Added importing / exporting Fake Database to / from CRM.
 - [ ] Add support for SQL Query and SqlClient.
+- [ ] Generate SQL Database from Fake Database.
