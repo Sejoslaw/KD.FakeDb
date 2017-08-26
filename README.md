@@ -2,6 +2,11 @@
 
 Fake Database. Made specially for Unit Tests.
 
+|Build|
+|-----|
+|[![Build status](https://ci.appveyor.com/api/projects/status/github/Sejoslaw/KD.FakeDb?svg=true)](https://ci.appveyor.com/api/projects/status/github/Sejoslaw/KD.FakeDb?svg=true)|
+
+
 Projects:
 ---
 
