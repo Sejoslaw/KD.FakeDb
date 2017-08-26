@@ -18,6 +18,14 @@ namespace KD.FakeDb
 
         public IFakeTableCollection TableCollection { get; }
 
+        public int Count
+        {
+            get
+            {
+                return this.TableCollection.Count;
+            }
+        }
+
         public FakeDatabase()
         {
             this.TableCollection = new FakeTableCollection(this);

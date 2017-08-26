@@ -23,6 +23,14 @@ namespace KD.FakeDb
             }
         }
 
+        public IFakeColumn this[int columnIndex]
+        {
+            get
+            {
+                return this.columns[columnIndex];
+            }
+        }
+
         public int Count
         {
             get

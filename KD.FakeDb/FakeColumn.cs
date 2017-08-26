@@ -24,7 +24,7 @@ namespace KD.FakeDb
                 {
                     return this.objects[index];
                 }
-                catch(KeyNotFoundException ex)
+                catch (KeyNotFoundException ex)
                 {
                     throw new KeyNotFoundException(string.Format("The given key ({0}) was not present in the dictionary.", index));
                 }
@@ -63,9 +63,9 @@ namespace KD.FakeDb
             this.objects = new Dictionary<int, object>();
         }
 
-        public IEnumerator<object> GetEnumerator()
+        public IEnumerator<KeyValuePair<int, object>> GetEnumerator()
         {
-            return this.objects.Values.GetEnumerator();
+            return this.objects.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

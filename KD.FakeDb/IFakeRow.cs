@@ -5,15 +5,22 @@ namespace KD.FakeDb
     /// <summary>
     /// Describes single Row in <see cref="IFakeTable"/>.
     /// </summary>
-    public interface IFakeRow : IEnumerable<object>
+    public interface IFakeRow : IEnumerable<KeyValuePair<string, object>>
     {
         /// <summary>
-        /// Returns the value in this <see cref="IFakeRow"/> from specified <see cref="IFakeColumn"/>. If column don't exists <see cref="System.ArgumentException"/> wil be thrown.
+        /// Returns the value in this <see cref="IFakeRow"/> from specified <see cref="IFakeColumn"/>'s Name. If column don't exists <see cref="System.ArgumentException"/> wil be thrown.
         /// </summary>
         /// <param name="columnName"> Name of the <see cref="IFakeColumn"/> from which to return value for this <see cref="IFakeRow"/>. </param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException"></exception>
         object this[string columnName] { get; set; }
+
+        /// <summary>
+        /// Returns the value in this <see cref="IFakeRow"/> from specified <see cref="IFakeColumn"/>'s Index. If column don't exists <see cref="System.ArgumentException"/> wil be thrown.
+        /// </summary>
+        /// <param name="columnIndex"> Index of the <see cref="IFakeColumn"/> from which to return value for this <see cref="IFakeRow"/>. </param>
+        /// <returns></returns>
+        object this[int columnIndex] { get; set; }
 
         /// <summary>
         /// Returns the Index in <see cref="IFakeTable"/> of this <see cref="IFakeRow"/>.

@@ -17,6 +17,14 @@ namespace KD.FakeDb
         IFakeColumn this[string columnName] { get; }
 
         /// <summary>
+        /// Returns <see cref="IFakeColumn"/> from given Column index if Column exists; otherwise <see cref="System.ArgumentException"/> will be thrown.
+        /// </summary>
+        /// <param name="columnIndex"> Index of the <see cref="IFakeColumn"/>. </param>
+        /// <returns> Returns <see cref="IFakeColumn"/> connected with given column name. </returns>
+        /// <exception cref="System.ArgumentException"></exception>
+        IFakeColumn this[int columnIndex] { get; }
+
+        /// <summary>
         /// Returns the number of Columns in this collection.
         /// </summary>
         int Count { get; }

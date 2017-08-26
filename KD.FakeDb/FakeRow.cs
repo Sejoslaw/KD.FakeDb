@@ -20,6 +20,18 @@ namespace KD.FakeDb
             }
         }
 
+        public object this[int columnIndex]
+        {
+            get
+            {
+                return this.Table.ColumnCollection[columnIndex][this.Index];
+            }
+            set
+            {
+                this.Table.ColumnCollection[columnIndex][this.Index] = value;
+            }
+        }
+
         public int Index { get; }
 
         public int Count
@@ -39,7 +51,7 @@ namespace KD.FakeDb
             this.Index = index;
         }
 
-        public IEnumerator<object> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
             return new FakeRowEnumerator(this);
         }

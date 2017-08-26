@@ -16,6 +16,14 @@ namespace KD.FakeDb
         IFakeTable this[string tableName] { get; }
 
         /// <summary>
+        /// Returns <see cref="IFakeTable"/> at specified index from internal list if Table exists; otherwise <see cref="System.ArgumentException"/> will be thrown.
+        /// </summary>
+        /// <param name="tableIndex"> Index of the <see cref="IFakeTable"/>. </param>
+        /// <returns> Returns <see cref="IFakeTable"/> at specified index. </returns>
+        /// <exception cref="System.ArgumentException"></exception>
+        IFakeTable this[int tableIndex] { get; }
+
+        /// <summary>
         /// Returns the number of Tables in this collection.
         /// </summary>
         int Count { get; }

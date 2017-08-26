@@ -23,6 +23,14 @@ namespace KD.FakeDb
             }
         }
 
+        public IFakeTable this[int tableIndex]
+        {
+            get
+            {
+                return this.tables[tableIndex];
+            }
+        }
+
         public int Count
         {
             get
