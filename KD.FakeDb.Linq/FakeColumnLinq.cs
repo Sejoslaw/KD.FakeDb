@@ -8,7 +8,7 @@ namespace KD.FakeDb.Linq
     /// <summary>
     /// Defines Linq methods for <see cref="IFakeColumn"/>.
     /// </summary>
-    public static partial class FakeColumnLinq
+    public static class FakeColumnLinq
     {
         /// <summary>
         /// Returns <see cref="List{T}"/> which contains all values from <see cref="IFakeColumn"/>.
@@ -36,7 +36,7 @@ namespace KD.FakeDb.Linq
         /// <typeparam name="TFakeColumn"> Type of the <see cref="IFakeColumn"/>. </typeparam>
         /// <param name="source"> Source <see cref="IFakeColumn"/>. </param>
         /// <param name="action"> <see cref="Action"/> which will be performed on each record in this <see cref="IFakeColumn"/>. </param>
-        public static void ForEach<TFakeColumn>(this TFakeColumn source, Action<KeyValuePair<int, object>> action)
+        public static void ForEachInColumn<TFakeColumn>(this TFakeColumn source, Action<KeyValuePair<int, object>> action)
             where TFakeColumn : IFakeColumn
         {
             for (int i = 0; i < source.Count; ++i)

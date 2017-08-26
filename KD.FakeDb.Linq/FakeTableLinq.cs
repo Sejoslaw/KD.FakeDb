@@ -7,7 +7,7 @@ namespace KD.FakeDb.Linq
     /// <summary>
     /// Defines Linq methods for <see cref="IFakeTable"/>.
     /// </summary>
-    public static partial class FakeTableLinq
+    public static class FakeTableLinq
     {
         /// <summary>
         /// Returns <see cref="IList{T}"/> of all <see cref="IFakeRow"/>s which meets the given condition.
@@ -32,11 +32,11 @@ namespace KD.FakeDb.Linq
         /// <param name="source"> Input <see cref="IFakeTable"/>. </param>
         /// <param name="conditions"> Input conditions. </param>
         /// <returns></returns>
-        public static IList<TFakeRow> Where<TFakeTable, TFakeRow>(this TFakeTable source, ICollection<Func<TFakeRow, bool>> conditions)
+        public static IList<TFakeRow> Where<TFakeTable, TFakeRow>(this TFakeTable source, IEnumerable<Func<TFakeRow, bool>> conditions)
             where TFakeTable : IFakeTable
             where TFakeRow : IFakeRow
         {
-            if (conditions == null && conditions.Count <= 0)
+            if (conditions == null && !conditions.Any())
             {
                 throw new ArgumentNullException(nameof(conditions), "You must specify at least one condition which will be use to get elements.");
             }

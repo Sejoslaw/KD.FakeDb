@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Factory", "KD.Fak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.XUnitTests", "KD.FakeDb.XUnitTests\KD.FakeDb.XUnitTests.csproj", "{D1D856A0-32D8-4FF3-9FA9-4A8E126EB8C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Linq", "KD.FakeDb.Linq\KD.FakeDb.Linq.csproj", "{6C86E467-DF11-4575-9132-520F3B377A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Linq", "KD.FakeDb.Linq\KD.FakeDb.Linq.csproj", "{6C86E467-DF11-4575-9132-520F3B377A58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

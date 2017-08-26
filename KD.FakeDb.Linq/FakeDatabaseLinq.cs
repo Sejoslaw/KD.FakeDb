@@ -7,7 +7,7 @@ namespace KD.FakeDb.Linq
     /// <summary>
     /// Defines Linq methods for <see cref="IFakeDatabase"/>.
     /// </summary>
-    public static partial class FakeDatabaseLinq
+    public static class FakeDatabaseLinq
     {
         /// <summary>
         /// Returns <see cref="IDictionary{TKey, TValue}"/> where Key is a <see cref="IFakeTable"/> 
@@ -37,12 +37,12 @@ namespace KD.FakeDb.Linq
         /// <param name="source"> Input <see cref="IFakeDatabase"/> which will be searched. </param>
         /// <param name="conditions"> Conditions which will be used to determine result. </param>
         /// <returns></returns>
-        public static IDictionary<TFakeTable, ISet<TFakeRow>> Where<TFakeDatabase, TFakeTable, TFakeRow>(this TFakeDatabase source, ICollection<Func<TFakeRow, bool>> conditions)
+        public static IDictionary<TFakeTable, ISet<TFakeRow>> Where<TFakeDatabase, TFakeTable, TFakeRow>(this TFakeDatabase source, IEnumerable<Func<TFakeRow, bool>> conditions)
             where TFakeDatabase : IFakeDatabase
             where TFakeTable : IFakeTable
             where TFakeRow : IFakeRow
         {
-            if (conditions == null && conditions.Count == 0)
+            if (conditions == null && !conditions.Any())
             {
                 throw new ArgumentNullException(nameof(conditions), "You must specify at least one condition which will be use to get elements.");
             }
@@ -72,7 +72,7 @@ namespace KD.FakeDb.Linq
                             // Try to get Set.
                             set = results[(TFakeTable)table];
                         }
-                        catch (KeyNotFoundException ex) // Catch if Set is not in Dictionary and add new.
+                        catch (KeyNotFoundException) // Catch if Set is not in Dictionary and add new.
                         {
                             set = new HashSet<TFakeRow>();
                             results[(TFakeTable)table] = set;
@@ -108,7 +108,7 @@ namespace KD.FakeDb.Linq
         /// <typeparam name="TFakeTable"> Type of <see cref="IFakeTable"/>. </typeparam>
         /// <param name="source"> This <see cref="IFakeDatabase"/>. </param>
         /// <param name="action"> <see cref="Action"/> delegate to perform on each <see cref="IFakeTable"/> from this <see cref="IFakeDatabase"/>. </param>
-        public static void ForEach<TFakeDatabase, TFakeTable>(this TFakeDatabase source, Action<TFakeTable> action)
+        public static void ForEachTable<TFakeDatabase, TFakeTable>(this TFakeDatabase source, Action<TFakeTable> action)
             where TFakeDatabase : IFakeDatabase
             where TFakeTable : IFakeTable
         {

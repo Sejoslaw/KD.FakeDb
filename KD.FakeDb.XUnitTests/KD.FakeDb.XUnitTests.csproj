@@ -20,6 +20,10 @@
     <OutputType>Exe</OutputType>
 
     <StartupObject />
+
+    <SignAssembly>true</SignAssembly>
+
+    <AssemblyOriginatorKeyFile>KD.FakeDb.XUnitTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

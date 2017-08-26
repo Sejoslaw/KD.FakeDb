@@ -24,7 +24,7 @@ namespace KD.FakeDb
                 {
                     return this.objects[index];
                 }
-                catch (KeyNotFoundException ex)
+                catch (KeyNotFoundException)
                 {
                     throw new KeyNotFoundException(string.Format("The given key ({0}) was not present in the dictionary.", index));
                 }

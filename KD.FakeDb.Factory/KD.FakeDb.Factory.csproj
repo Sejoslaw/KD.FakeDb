@@ -7,6 +7,8 @@
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
     <Authors>Krzysztof Dobrzynski</Authors>
     <Copyright>https://github.com/Sejoslaw</Copyright>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>KD.FakeDb.Factory.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

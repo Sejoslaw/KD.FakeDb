@@ -13,7 +13,7 @@ namespace KD.FakeDb
         /// <summary>
         /// For internal <see cref="IFakeTable"/>'s storing.
         /// </summary>
-        private List<IFakeTable> tables = new List<IFakeTable>();
+        private ISet<IFakeTable> tables = new HashSet<IFakeTable>();
 
         public IFakeTable this[string tableName]
         {
@@ -27,7 +27,7 @@ namespace KD.FakeDb
         {
             get
             {
-                return this.tables[tableIndex];
+                return this.tables.ElementAt(tableIndex);
             }
         }
 
@@ -52,7 +52,7 @@ namespace KD.FakeDb
                         where tab.Name.Equals(tableName)
                         select tab);
 
-            if (tabs.Count() != 0)
+            if (tabs.Any())
             {
                 throw new Exception(string.Format("Table with name \"{0}\" already exists.", tableName));
             }
@@ -73,7 +73,7 @@ namespace KD.FakeDb
                 throw new Exception(string.Format("There is none or multiple Tables with name \"{0}\"", tableName));
             }
 
-            return tables.First();
+            return tabs.First();
         }
 
         public void RemoveTable(string tableName)
