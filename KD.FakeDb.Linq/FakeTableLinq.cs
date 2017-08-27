@@ -10,45 +10,37 @@ namespace KD.FakeDb.Linq
     public static class FakeTableLinq
     {
         /// <summary>
-        /// Returns <see cref="IList{T}"/> of all <see cref="IFakeRow"/>s which meets the given condition.
+        /// Returns <see cref="List{T}"/> of all <see cref="IFakeRow"/>s which meets the given condition.
         /// </summary>
-        /// <typeparam name="TFakeTable"> Type of input <see cref="IFakeTable"/>. </typeparam>
-        /// <typeparam name="TFakeRow"> Type of result <see cref="IFakeRow"/>. </typeparam>
         /// <param name="source"> Input <see cref="IFakeTable"/>. </param>
         /// <param name="condition"> Input condition. </param>
         /// <returns></returns>
-        public static IList<TFakeRow> Where<TFakeTable, TFakeRow>(this TFakeTable source, Func<TFakeRow, bool> condition)
-            where TFakeTable : IFakeTable
-            where TFakeRow : IFakeRow
+        public static List<IFakeRow> Where(this IFakeTable source, Func<IFakeRow, bool> condition)
         {
-            return Where(source, new List<Func<TFakeRow, bool>>() { condition });
+            return Where(source, new List<Func<IFakeRow, bool>>() { condition });
         }
 
         /// <summary>
-        /// Returns <see cref="IList{T}"/> of all <see cref="IFakeRow"/>s which meets the given conditions.
+        /// Returns <see cref="List{T}"/> of all <see cref="IFakeRow"/>s which meets the given conditions.
         /// </summary>
-        /// <typeparam name="TFakeTable"> Type of input <see cref="IFakeTable"/>. </typeparam>
-        /// <typeparam name="TFakeRow"> Type of result <see cref="IFakeRow"/>. </typeparam>
         /// <param name="source"> Input <see cref="IFakeTable"/>. </param>
         /// <param name="conditions"> Input conditions. </param>
         /// <returns></returns>
-        public static IList<TFakeRow> Where<TFakeTable, TFakeRow>(this TFakeTable source, IEnumerable<Func<TFakeRow, bool>> conditions)
-            where TFakeTable : IFakeTable
-            where TFakeRow : IFakeRow
+        public static List<IFakeRow> Where(this IFakeTable source, IEnumerable<Func<IFakeRow, bool>> conditions)
         {
             if (conditions == null && !conditions.Any())
             {
                 throw new ArgumentNullException(nameof(conditions), "You must specify at least one condition which will be use to get elements.");
             }
 
-            IList<TFakeRow> results = new List<TFakeRow>();
+            List<IFakeRow> results = new List<IFakeRow>();
 
             foreach (var row in source.RowCollection.ToList())
             {
                 bool shouldBeAdded = true;
                 foreach (var condition in conditions)
                 {
-                    if (!condition.Invoke((TFakeRow)row))
+                    if (!condition.Invoke(row))
                     {
                         shouldBeAdded = false;
                         break;
@@ -57,77 +49,11 @@ namespace KD.FakeDb.Linq
 
                 if (shouldBeAdded)
                 {
-                    results.Add((TFakeRow)row);
+                    results.Add(row);
                 }
             }
 
             return results;
-        }
-
-        /// <summary>
-        /// Returns <see cref="List{T}"/> which contains all <see cref="IFakeRow"/>s from <see cref="IFakeTable"/>.
-        /// </summary>
-        /// <typeparam name="TFakeTable"> Type of input <see cref="IFakeTable"/>. </typeparam>
-        /// <typeparam name="TFakeRow"> Type of result <see cref="IFakeRow"/>s. </typeparam>
-        /// <param name="source"> Input <see cref="IFakeTable"/>. </param>
-        /// <returns></returns>
-        public static List<TFakeRow> ToRowsList<TFakeTable, TFakeRow>(this TFakeTable source)
-            where TFakeTable : IFakeTable
-            where TFakeRow : IFakeRow
-        {
-            List<TFakeRow> rows = new List<TFakeRow>();
-            source.RowCollection.ToList().ForEach(row => rows.Add((TFakeRow)row));
-            return rows;
-        }
-
-        /// <summary>
-        /// Returns <see cref="List{T}"/> which contains all <see cref="IFakeColumn"/>s from <see cref="IFakeTable"/>.
-        /// </summary>
-        /// <typeparam name="TFakeTable"> Type of input <see cref="IFakeTable"/>. </typeparam>
-        /// <typeparam name="TFakeColumn"> Type of result <see cref="IFakeColumn"/>. </typeparam>
-        /// <param name="source"> Input <see cref="IFakeTable"/>. </param>
-        /// <returns></returns>
-        public static List<TFakeColumn> ToColumnsList<TFakeTable, TFakeColumn>(this TFakeTable source)
-            where TFakeTable : IFakeTable
-            where TFakeColumn : IFakeColumn
-        {
-            List<TFakeColumn> columns = new List<TFakeColumn>();
-            source.ColumnCollection.ToList().ForEach(column => columns.Add((TFakeColumn)column));
-            return columns;
-        }
-
-        /// <summary>
-        /// Performs the specified action on each <see cref="IFakeColumn"/> from this <see cref="IFakeTable"/>.
-        /// </summary>
-        /// <typeparam name="TFakeTable"> Type of <see cref="IFakeTable"/>. </typeparam>
-        /// <typeparam name="TFakeColumn"> Type of <see cref="IFakeColumn"/>. </typeparam>
-        /// <param name="source"> This <see cref="IFakeTable"/>. </param>
-        /// <param name="action"> <see cref="Action"/> which will be performed on each <see cref="IFakeColumn"/> in this <see cref="IFakeTable"/>. </param>
-        public static void ForEachColumn<TFakeTable, TFakeColumn>(this TFakeTable source, Action<TFakeColumn> action)
-            where TFakeTable : IFakeTable
-            where TFakeColumn : IFakeColumn
-        {
-            for (int i = 0; i < source.ColumnCollection.Count; ++i)
-            {
-                action((TFakeColumn)source.ColumnCollection[i]);
-            }
-        }
-
-        /// <summary>
-        /// Performs the specified action on each <see cref="IFakeRow"/> from this <see cref="IFakeTable"/>.
-        /// </summary>
-        /// <typeparam name="TFakeTable"> Type of <see cref="IFakeTable"/>. </typeparam>
-        /// <typeparam name="TFakeRow"> Type of <see cref="IFakeRow"/>. </typeparam>
-        /// <param name="source"> This <see cref="IFakeTable"/>. </param>
-        /// <param name="action"> <see cref="Action"/> which will be performed on each <see cref="IFakeRow"/> in this <see cref="IFakeTable"/>. </param>
-        public static void ForEachRow<TFakeTable, TFakeRow>(this TFakeTable source, Action<TFakeRow> action)
-            where TFakeTable : IFakeTable
-            where TFakeRow : IFakeRow
-        {
-            for (int i = 0; i < source.RowCollection.Count; ++i)
-            {
-                action((TFakeRow)source.RowCollection[i]);
-            }
         }
     }
 }

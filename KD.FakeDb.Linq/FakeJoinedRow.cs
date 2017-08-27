@@ -61,7 +61,7 @@ namespace KD.FakeDb.Linq
 
         public void JoinRow(IFakeRow row)
         {
-            row.ForEachInRow(element =>
+            row.ForEach(element =>
             {
                 if (!this.Values.ContainsKey(element.Key))
                 {
@@ -77,7 +77,7 @@ namespace KD.FakeDb.Linq
 
         public void JoinRow(IFakeJoinedRow row)
         {
-            row.ForEachInJoinedRow(element =>
+            row.ForEach(element =>
             {
                 if (!this.Values.ContainsKey(element.Key))
                 {

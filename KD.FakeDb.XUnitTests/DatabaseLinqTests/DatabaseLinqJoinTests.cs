@@ -1,6 +1,7 @@
 ﻿using KD.FakeDb.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace KD.FakeDb.XUnitTests.DatabaseLinqTests
