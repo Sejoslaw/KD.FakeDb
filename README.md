@@ -21,11 +21,11 @@ DONE:
 ---
 
 - [X] Add Factory for static and dynamic Fake Database creation.
+- [X] Finish including remade Linq methods (Almost any basic FakeDb object implements IEnumerable).
 
 TODO:
 ---
 
-- [ ] Finish including remade Linq methods (Select, OrderBy, etc.)
 - [ ] Added importing / exporting Fake Database to / from XML.
 - [ ] Added importing / exporting Fake Database to / from JSON.
 - [ ] Added importing / exporting Fake Database to / from Excel File Format or other File Format.
