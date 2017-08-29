@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.Factory</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
     <Authors>Krzysztof Dobrzynski</Authors>
     <Copyright>https://github.com/Sejoslaw</Copyright>
