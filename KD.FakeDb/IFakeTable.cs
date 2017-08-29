@@ -43,6 +43,11 @@ namespace KD.FakeDb
         IFakeDatabase Database { get; }
 
         /// <summary>
+        /// Adds new <see cref="IFakeColumn"/> to this Table.
+        /// </summary>
+        /// <param name="column"></param>
+        void AddColumn(IFakeColumn column);
+        /// <summary>
         /// Adds new <see cref="IFakeColumn"/> to this <see cref="IFakeTable"/> with given name.
         /// </summary>
         /// <param name="columnName"> New Column name. </param>

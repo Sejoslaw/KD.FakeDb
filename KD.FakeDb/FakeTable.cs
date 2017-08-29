@@ -39,6 +39,11 @@ namespace KD.FakeDb
             this.RowCollection = new FakeRowCollection(this);
         }
 
+        public void AddColumn(IFakeColumn column)
+        {
+            this.ColumnCollection.Add(column);
+        }
+
         public IFakeColumn AddColumn(string columnName, Type columnObjectType)
         {
             return this.ColumnCollection.AddColumn(columnName, columnObjectType);

@@ -41,6 +41,14 @@ namespace KD.FakeDb
 
         public IFakeDatabase Database { get; }
 
+        public bool IsReadOnly
+        {
+            get
+            {
+                return this.tables.IsReadOnly;
+            }
+        }
+
         public FakeTableCollection(IFakeDatabase fakeDatabase)
         {
             this.Database = fakeDatabase;
@@ -98,6 +106,31 @@ namespace KD.FakeDb
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public void Add(IFakeTable item)
+        {
+            this.tables.Add(item);
+        }
+
+        public void Clear()
+        {
+            this.tables.Clear();
+        }
+
+        public bool Contains(IFakeTable item)
+        {
+            return this.tables.Contains(item);
+        }
+
+        public void CopyTo(IFakeTable[] array, int arrayIndex)
+        {
+            this.tables.CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(IFakeTable item)
+        {
+            return this.tables.Remove(item);
         }
     }
 }

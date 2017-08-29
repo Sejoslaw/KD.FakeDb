@@ -8,7 +8,7 @@ namespace KD.FakeDb
     /// <summary>
     /// Default implementation of <see cref="IFakeColumnCollection"/>.
     /// </summary>
-    public class FakeColumnCollection : IFakeColumnCollection
+    public class FakeColumnCollection :  IFakeColumnCollection
     {
         /// <summary>
         /// For internal <see cref="IFakeColumn"/>'s storing.
@@ -40,6 +40,8 @@ namespace KD.FakeDb
         }
 
         public IFakeTable Table { get; }
+
+        public bool IsReadOnly => throw new NotImplementedException();
 
         public FakeColumnCollection(IFakeTable fakeTable)
         {
@@ -98,6 +100,31 @@ namespace KD.FakeDb
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public void Add(IFakeColumn item)
+        {
+            this.columns.Add(item);
+        }
+
+        public void Clear()
+        {
+            this.columns.Clear();
+        }
+
+        public bool Contains(IFakeColumn item)
+        {
+            return this.columns.Contains(item);
+        }
+
+        public void CopyTo(IFakeColumn[] array, int arrayIndex)
+        {
+            this.columns.CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(IFakeColumn item)
+        {
+            return this.columns.Remove(item);
         }
     }
 }

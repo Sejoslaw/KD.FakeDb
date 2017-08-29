@@ -6,7 +6,7 @@ namespace KD.FakeDb
     /// <summary>
     /// Describes single Column in <see cref="IFakeTable"/>.
     /// </summary>
-    public interface IFakeColumn : IEnumerable<KeyValuePair<int, object>> // Key -> index, Value -> value at that index
+    public interface IFakeColumn : ICollection<KeyValuePair<int, object>> // Key -> index, Value -> value at that index
     {
         /// <summary>
         /// Returns the object on specified index in this <see cref="IFakeColumn"/>. If index is less than 0, <see cref="System.ArgumentException"/> will be thrown.

@@ -5,7 +5,7 @@ namespace KD.FakeDb
     /// <summary>
     /// Describes a collection of <see cref="IFakeTable"/>'s inside <see cref="IFakeDatabase"/>.
     /// </summary>
-    public interface IFakeTableCollection : IEnumerable<IFakeTable>
+    public interface IFakeTableCollection : ICollection<IFakeTable>
     {
         /// <summary>
         /// Returns <see cref="IFakeTable"/> from given Table name if Table exists; otherwise <see cref="System.ArgumentException"/> will be thrown.

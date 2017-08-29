@@ -5,7 +5,7 @@ namespace KD.FakeDb
     /// <summary>
     /// Describes the main functionality of Fake Database.
     /// </summary>
-    public interface IFakeDatabase : IEnumerable<IFakeTable>
+    public interface IFakeDatabase : ICollection<IFakeTable>
     {
         /// <summary>
         /// Returns <see cref="IFakeTable"/> from given Table name if Table exists; otherwise <see cref="System.ArgumentException"/> will be thrown.

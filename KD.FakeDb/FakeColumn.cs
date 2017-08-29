@@ -54,6 +54,14 @@ namespace KD.FakeDb
 
         public IFakeTable Table { get; }
 
+        public bool IsReadOnly
+        {
+            get
+            {
+                return this.objects.IsReadOnly;
+            }
+        }
+
         public FakeColumn(IFakeTable table, string columnName, Type columnObjectType)
         {
             this.Table = table;
@@ -71,6 +79,31 @@ namespace KD.FakeDb
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public void Add(KeyValuePair<int, object> item)
+        {
+            this.objects.Add(item);
+        }
+
+        public void Clear()
+        {
+            this.objects.Clear();
+        }
+
+        public bool Contains(KeyValuePair<int, object> item)
+        {
+            return this.objects.Contains(item);
+        }
+
+        public void CopyTo(KeyValuePair<int, object>[] array, int arrayIndex)
+        {
+            this.objects.CopyTo(array, arrayIndex);
+        }
+
+        public bool Remove(KeyValuePair<int, object> item)
+        {
+            return this.objects.Remove(item);
         }
     }
 }
