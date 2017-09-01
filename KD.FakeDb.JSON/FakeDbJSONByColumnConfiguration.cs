@@ -1,5 +1,5 @@
-﻿using KD.FakeDb.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Linq;
 
 namespace KD.FakeDb.JSON
 {
@@ -23,7 +23,7 @@ namespace KD.FakeDb.JSON
                     writer.WritePropertyName(FakeDbJSONConstants.LabelTable); // Start writing Tables in form of array
                     writer.WriteStartArray();
                     {
-                        database.ForEach(table =>
+                        database.ToList().ForEach(table =>
                         {
                             writer.WriteStartObject(); // Table object
                             {
@@ -35,7 +35,7 @@ namespace KD.FakeDb.JSON
                                 writer.WritePropertyName(FakeDbJSONConstants.LabelColumn);
                                 writer.WriteStartArray();
                                 {
-                                    table.ColumnCollection.ForEach(column =>
+                                    table.ColumnCollection.ToList().ForEach(column =>
                                     {
                                         writer.WriteStartObject(); // Table object
                                         {
@@ -47,7 +47,7 @@ namespace KD.FakeDb.JSON
                                             writer.WritePropertyName(FakeDbJSONConstants.LabelRecord);
                                             writer.WriteStartArray();
                                             {
-                                                column.ForEach(record =>
+                                                column.ToList().ForEach(record =>
                                                 {
                                                     writer.WriteStartObject(); // Column Record object
                                                     {

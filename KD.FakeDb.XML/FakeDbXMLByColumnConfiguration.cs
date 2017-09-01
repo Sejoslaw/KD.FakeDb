@@ -1,5 +1,4 @@
-﻿using KD.FakeDb.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -123,7 +122,7 @@ namespace KD.FakeDb.XML
                 writer.WriteStartElement(FakeDbXMLConstants.LabelDatabase); // Write Database
                 writer.WriteAttributeString(FakeDbXMLConstants.AttributeClass, database.GetType().AssemblyQualifiedName); // Database Class
                 {
-                    database.ForEach(table =>
+                    database.ToList().ForEach(table =>
                     {
                         writer.WriteStartElement(FakeDbXMLConstants.LabelTable); // Write Table
                         writer.WriteAttributeString(FakeDbXMLConstants.AttributeClass, table.GetType().AssemblyQualifiedName); // Table Class
@@ -131,7 +130,7 @@ namespace KD.FakeDb.XML
                         writer.WriteAttributeString(FakeDbXMLConstants.AttributeColumns, table.ColumnCollection.Count.ToString()); // Columns Count
                         writer.WriteAttributeString(FakeDbXMLConstants.AttributeRows, table.RowCollection.Count.ToString()); // Rows Count
                         {
-                            table.ColumnCollection.ForEach(column =>
+                            table.ColumnCollection.ToList().ForEach(column =>
                             {
                                 writer.WriteStartElement(FakeDbXMLConstants.LabelColumn); // Write Column
                                 writer.WriteAttributeString(FakeDbXMLConstants.AttributeClass, column.GetType().AssemblyQualifiedName); // Column Class
@@ -139,7 +138,7 @@ namespace KD.FakeDb.XML
                                 writer.WriteAttributeString(FakeDbXMLConstants.AttributeCount, column.Count.ToString()); // Column Count
                                 writer.WriteAttributeString(FakeDbXMLConstants.AttributeColumnRecordType, column.Type.AssemblyQualifiedName); // Column Records Type
                                 {
-                                    column.ForEach(record =>
+                                    column.ToList().ForEach(record =>
                                     {
                                         writer.WriteStartElement(FakeDbXMLConstants.LabelRecord); // Write Record
                                         writer.WriteAttributeString(FakeDbXMLConstants.AttributeIndex, record.Key.ToString()); // Record Index
