@@ -21,11 +21,6 @@ namespace KD.FakeDb
         IFakeTableCollection TableCollection { get; }
 
         /// <summary>
-        /// Returns the number of <see cref="IFakeTable"/>s in this Database.
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
         /// Adds new <see cref="IFakeTable"/> to this <see cref="IFakeDatabase"/> with given name.
         /// </summary>
         /// <param name="tableName"> New Table name. </param>

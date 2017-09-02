@@ -27,11 +27,6 @@ namespace KD.FakeDb
         Type Type { get; }
 
         /// <summary>
-        /// Returns the number of elements in this <see cref="IFakeColumn"/>.
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
         /// Returns the <see cref="IFakeTable"/> which contains this <see cref="IFakeColumn"/>.
         /// </summary>
         IFakeTable Table { get; }

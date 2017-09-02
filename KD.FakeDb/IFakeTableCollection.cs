@@ -24,11 +24,6 @@ namespace KD.FakeDb
         IFakeTable this[int tableIndex] { get; }
 
         /// <summary>
-        /// Returns the number of Tables in this collection.
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
         /// Returns <see cref="IFakeDatabase"/> to which this collection belongs.
         /// </summary>
         IFakeDatabase Database { get; }

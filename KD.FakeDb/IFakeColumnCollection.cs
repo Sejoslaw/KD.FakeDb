@@ -25,11 +25,6 @@ namespace KD.FakeDb
         IFakeColumn this[int columnIndex] { get; }
 
         /// <summary>
-        /// Returns the number of Columns in this collection.
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
         /// Returns <see cref="IFakeTable"/> to which this collection belongs.
         /// </summary>
         IFakeTable Table { get; }
