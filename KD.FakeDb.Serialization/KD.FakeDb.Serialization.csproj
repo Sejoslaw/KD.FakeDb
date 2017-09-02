@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Authors>Krzysztof Dobrzynski</Authors>
+    <Company>Krzysztof Dobrzynski</Company>
+    <Copyright>https://github.com/Sejoslaw</Copyright>
+    <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.Serialization</PackageProjectUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>KD.FakeDb.Serialization.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
