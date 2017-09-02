@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace KD.FakeDb.JSON
@@ -13,9 +14,55 @@ namespace KD.FakeDb.JSON
     {
         public void ReadDatabase(JsonReader reader, ref IFakeDatabase database)
         {
+            // Parse JSON
             var databaseJSON = JObject.Load(reader); // Load JSON Database object
-            var databaseClass = databaseJSON.Property(FakeDbConstants.PropertyClass).Value.ToString(); // Database Type
-            Type databaseType = Type.GetType(databaseClass);
+            var databaseType = GetTypeFromProperty(databaseJSON); // Database Type
+
+            // Create Database
+            database = SerializerUtils.TryToBuildObject<IFakeDatabase>(databaseType, null);
+
+            // For Each Table in file
+            foreach (var tableJSON in databaseJSON.Property(FakeDbConstants.LabelTable).Value.AsJEnumerable())
+            {
+                // Build Table
+                var tableName = tableJSON[FakeDbConstants.PropertyName].Value<string>();
+                var tableType = Type.GetType(tableJSON[FakeDbConstants.PropertyClass].Value<string>()); // Table Type
+                var table = SerializerUtils.TryToBuildObject<IFakeTable>(tableType, new object[] { database, tableName });
+
+                // Force change the Table Name
+                table.Name = tableName;
+
+                // For each Column in Table
+                foreach (var columnJSON in tableJSON[FakeDbConstants.LabelColumn])
+                {
+                    // Build Column
+                    var columnName = columnJSON[FakeDbConstants.PropertyName].Value<string>();
+                    var columnType = Type.GetType(columnJSON[FakeDbConstants.PropertyClass].Value<string>()); // Column Type
+
+                    var columnRecordType = Type.GetType(columnJSON[FakeDbConstants.PropertyColumnRecordType].Value<string>());
+
+                    var column = SerializerUtils.TryToBuildObject<IFakeColumn>(columnType, new object[] { table, columnName, columnRecordType });
+
+                    // Force change Column Name
+                    column.Name = columnName;
+
+                    // All Record for this Column
+                    foreach (var recordJSON in columnJSON[FakeDbConstants.LabelRecord])
+                    {
+                        var index = recordJSON[FakeDbConstants.PropertyIndex].Value<int>();
+                        var value = recordJSON[FakeDbConstants.PropertyValue].Value<string>();
+
+                        // Add Record to Column
+                        column.Add(new KeyValuePair<int, object>(index, value));
+                    }
+
+                    // Add Column to Table
+                    table.AddColumn(column);
+                }
+
+                // Add Table to Database
+                database.Add(table);
+            }
         }
 
         public void WriteDatabase(JsonWriter writer, IFakeDatabase database)
@@ -78,6 +125,16 @@ namespace KD.FakeDb.JSON
                 }
             }
             writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Returns read <see cref="Type"/> of given <see cref="JObject"/>.
+        /// </summary>
+        private Type GetTypeFromProperty(JObject jobject)
+        {
+            var jobjectClass = jobject.Property(FakeDbConstants.PropertyClass).Value.ToString();
+            Type type = Type.GetType(jobjectClass);
+            return type;
         }
     }
 }

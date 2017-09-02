@@ -28,7 +28,7 @@ namespace KD.FakeDb.XML
             var databaseElement = databaseElements.ElementAt(0);
             var databaseType = GetTypeFromAttribute(databaseElement);
 
-            database = TryToBuildObject<IFakeDatabase>(databaseType, null);
+            database = SerializerUtils.TryToBuildObject<IFakeDatabase>(databaseType, null);
 
             // All Tables from File
             var tables = document.Descendants(XName.Get(FakeDbConstants.LabelTable));
@@ -38,7 +38,7 @@ namespace KD.FakeDb.XML
                 var tableName = table.Attribute(XName.Get(FakeDbConstants.AttributeName)).Value;
                 var tableType = GetTypeFromAttribute(table);
 
-                var tableToAdd = TryToBuildObject<IFakeTable>(tableType, new object[] { database, tableName });
+                var tableToAdd = SerializerUtils.TryToBuildObject<IFakeTable>(tableType, new object[] { database, tableName });
 
                 // Force change the Table Name
                 tableToAdd.Name = tableName;
@@ -54,7 +54,7 @@ namespace KD.FakeDb.XML
                     var columnRecordClass = column.Attribute(XName.Get(FakeDbConstants.AttributeColumnRecordType)).Value;
                     var columnRecordType = Type.GetType(columnRecordClass);
 
-                    var columnToAdd = TryToBuildObject<IFakeColumn>(columnType, new object[] { tableToAdd, columnName, columnRecordType });
+                    var columnToAdd = SerializerUtils.TryToBuildObject<IFakeColumn>(columnType, new object[] { tableToAdd, columnName, columnRecordType });
 
                     // Force change Column Name
                     columnToAdd.Name = columnName;
@@ -129,32 +129,6 @@ namespace KD.FakeDb.XML
             var classFromAttribute = element.Attribute(FakeDbConstants.AttributeClass).Value;
             Type classType = Type.GetType(classFromAttribute);
             return classType;
-        }
-
-        /// <summary>
-        /// Tries to build object from given <see cref="Type"/> and cast it to given generic parameter. At first it will try and build default constructor with zero parameters.
-        /// </summary>
-        private T TryToBuildObject<T>(Type type, object[] args)
-        {
-            T newObject;
-
-            try
-            {
-                newObject = (T)Activator.CreateInstance(type);
-            }
-            catch (Exception)
-            {
-                try
-                {
-                    newObject = (T)Activator.CreateInstance(type, args);
-                }
-                catch (Exception)
-                {
-                    throw new Exception(string.Format("Error when creating new object from Type: {0}", type));
-                }
-            }
-
-            return newObject;
         }
     }
 }

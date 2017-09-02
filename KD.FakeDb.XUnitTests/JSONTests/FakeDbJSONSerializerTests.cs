@@ -26,12 +26,15 @@ namespace KD.FakeDb.XUnitTests.JSONTests
             Assert.True(db != null);
         }
 
-        //[Fact]
+        [Fact]
         public void Try_to_read_Database_from_JSON()
         {
             using (JsonReader reader = new JsonTextReader(File.OpenText("db.json")))
             {
-                var serializer = new FakeDbSerializer<JsonReader, JsonWriter>();
+                var serializer = new FakeDbSerializer<JsonReader, JsonWriter>()
+                {
+                    Configuration = new FakeDbJSONByColumnConfiguration()
+                };
                 serializer.ReadDatabase(reader);
 
                 var db = serializer.Database;
