@@ -32,7 +32,10 @@ namespace KD.FakeDb.XUnitTests.XMLTests
         {
             var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
 
-            var serializer = new FakeDbSerializer<XmlReader, XmlWriter>();
+            var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
+            {
+                Configuration = new FakeDbXMLByColumnConfiguration()
+            };
             serializer.ReadDatabase(XDocument.Load(fileStream).CreateReader());
 
             var db = serializer.Database;
