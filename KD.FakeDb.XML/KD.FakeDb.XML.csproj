@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>KD.FakeDb.XML.snk</AssemblyOriginatorKeyFile>
     <Authors>Krzysztof Dobrzynski</Authors>
     <Company>Krzysztof Dobrzynski</Company>

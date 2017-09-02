@@ -21,7 +21,7 @@
 
     <StartupObject />
 
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
 
     <AssemblyOriginatorKeyFile>KD.FakeDb.XUnitTests.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>

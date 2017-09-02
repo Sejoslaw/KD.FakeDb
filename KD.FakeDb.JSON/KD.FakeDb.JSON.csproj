@@ -8,7 +8,7 @@
     <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.JSON</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>KD.FakeDb.JSON.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 

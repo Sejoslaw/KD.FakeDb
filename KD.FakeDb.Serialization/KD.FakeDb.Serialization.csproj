@@ -8,7 +8,7 @@
     <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.Serialization</PackageProjectUrl>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>KD.FakeDb.Serialization.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 

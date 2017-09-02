@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>KD.FakeDb.snk</AssemblyOriginatorKeyFile>
     <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
