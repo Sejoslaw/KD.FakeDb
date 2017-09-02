@@ -10,8 +10,8 @@ namespace KD.FakeDb.XUnitTests.DatabaseTests
             var db = FakeDatabaseData.GetDatabaseWithData();
             var accTable = db["Accounts"];
 
-            Assert.Equal(4, accTable.ColumnCollection.Count);
-            Assert.Equal(1, accTable.RowCollection.Count);
+            Assert.True(4 <= accTable.ColumnCollection.Count);
+            Assert.True(4 <= accTable.RowCollection.Count);
             Assert.Equal("Krzysztof", accTable.GetRow(0)["FirstName"]);
         }
     }
