@@ -26,10 +26,9 @@ namespace KD.FakeDb.XML
             }
 
             var databaseElement = databaseElements.ElementAt(0);
-            var databaseClass = databaseElement.Attribute(FakeDbConstants.AttributeClass).Value;
-            var databaseType = Type.GetType(databaseClass);
+            var databaseType = GetTypeFromAttribute(databaseElement);
 
-            database = (IFakeDatabase)Activator.CreateInstance(databaseType);
+            database = TryToBuildObject<IFakeDatabase>(databaseType, null);
 
             // All Tables from File
             var tables = document.Descendants(XName.Get(FakeDbConstants.LabelTable));
@@ -37,27 +36,9 @@ namespace KD.FakeDb.XML
             {
                 // Create Table
                 var tableName = table.Attribute(XName.Get(FakeDbConstants.AttributeName)).Value;
-                var tableClass = table.Attribute(XName.Get(FakeDbConstants.AttributeClass)).Value;
-                var tableType = Type.GetType(tableClass);
+                var tableType = GetTypeFromAttribute(table);
 
-                IFakeTable tableToAdd = null;
-                try
-                {
-                    // Default constructor
-                    tableToAdd = (IFakeTable)Activator.CreateInstance(tableType);
-                }
-                catch (Exception)
-                {
-                    try
-                    {
-                        // FakeTable parametrized constrcutor
-                        tableToAdd = (IFakeTable)Activator.CreateInstance(tableType, new object[] { database, tableName });
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception(string.Format("Error when creating Table from: {0}", table));
-                    }
-                }
+                var tableToAdd = TryToBuildObject<IFakeTable>(tableType, new object[] { database, tableName });
 
                 // Force change the Table Name
                 tableToAdd.Name = tableName;
@@ -68,30 +49,12 @@ namespace KD.FakeDb.XML
                 {
                     // Create Column
                     var columnName = column.Attribute(XName.Get(FakeDbConstants.AttributeName)).Value;
-                    var columnClass = column.Attribute(XName.Get(FakeDbConstants.AttributeClass)).Value;
-                    var columnType = Type.GetType(columnClass);
+                    var columnType = GetTypeFromAttribute(column);
 
                     var columnRecordClass = column.Attribute(XName.Get(FakeDbConstants.AttributeColumnRecordType)).Value;
                     var columnRecordType = Type.GetType(columnRecordClass);
 
-                    IFakeColumn columnToAdd = null;
-                    try
-                    {
-                        // Default constructor
-                        columnToAdd = (IFakeColumn)Activator.CreateInstance(columnType);
-                    }
-                    catch (Exception)
-                    {
-                        try
-                        {
-                            // FakeColumn parametrized constructor
-                            columnToAdd = (IFakeColumn)Activator.CreateInstance(columnType, new object[] { tableToAdd, columnName, columnRecordType });
-                        }
-                        catch (Exception)
-                        {
-                            throw new Exception(string.Format("Error when creating Column from: {0}", column));
-                        }
-                    }
+                    var columnToAdd = TryToBuildObject<IFakeColumn>(columnType, new object[] { tableToAdd, columnName, columnRecordType });
 
                     // Force change Column Name
                     columnToAdd.Name = columnName;
@@ -156,6 +119,42 @@ namespace KD.FakeDb.XML
                 writer.WriteEndElement();
             }
             writer.WriteEndDocument();
+        }
+
+        /// <summary>
+        /// Returns the <see cref="Type"/> from parameters in <see cref="XElement"/>.
+        /// </summary>
+        private Type GetTypeFromAttribute(XElement element)
+        {
+            var classFromAttribute = element.Attribute(FakeDbConstants.AttributeClass).Value;
+            Type classType = Type.GetType(classFromAttribute);
+            return classType;
+        }
+
+        /// <summary>
+        /// Tries to build object from given <see cref="Type"/> and cast it to given generic parameter. At first it will try and build default constructor with zero parameters.
+        /// </summary>
+        private T TryToBuildObject<T>(Type type, object[] args)
+        {
+            T newObject;
+
+            try
+            {
+                newObject = (T)Activator.CreateInstance(type);
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    newObject = (T)Activator.CreateInstance(type, args);
+                }
+                catch (Exception)
+                {
+                    throw new Exception(string.Format("Error when creating new object from Type: {0}", type));
+                }
+            }
+
+            return newObject;
         }
     }
 }

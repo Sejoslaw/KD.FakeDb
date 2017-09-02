@@ -1,5 +1,7 @@
 ﻿using KD.FakeDb.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
 
 namespace KD.FakeDb.JSON
@@ -11,6 +13,9 @@ namespace KD.FakeDb.JSON
     {
         public void ReadDatabase(JsonReader reader, ref IFakeDatabase database)
         {
+            var databaseJSON = JObject.Load(reader); // Load JSON Database object
+            var databaseClass = databaseJSON.Property(FakeDbConstants.PropertyClass).Value.ToString(); // Database Type
+            Type databaseType = Type.GetType(databaseClass);
         }
 
         public void WriteDatabase(JsonWriter writer, IFakeDatabase database)
