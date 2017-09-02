@@ -1,4 +1,5 @@
-﻿using KD.FakeDb.XML;
+﻿using KD.FakeDb.Serialization;
+using KD.FakeDb.XML;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -15,12 +16,12 @@ namespace KD.FakeDb.XUnitTests.XMLTests
             var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             using (var writer = XmlWriter.Create(fileStream))
             {
-                var serializer = new FakeDbXMLSerializer()
+                var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
                 {
                     Database = db,
-                    //Configuration = new FakeDbXMLByColumnConfiguration()
+                    Configuration = new FakeDbXMLByColumnConfiguration()
                 };
-                serializer.WriteXml(writer);
+                serializer.WriteDatabase(writer);
             }
 
             Assert.True(fileStream != null);
@@ -31,8 +32,8 @@ namespace KD.FakeDb.XUnitTests.XMLTests
         {
             var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
 
-            var serializer = new FakeDbXMLSerializer();
-            serializer.ReadXml(XDocument.Load(fileStream).CreateReader());
+            var serializer = new FakeDbSerializer<XmlReader, XmlWriter>();
+            serializer.ReadDatabase(XDocument.Load(fileStream).CreateReader());
 
             var db = serializer.Database;
 

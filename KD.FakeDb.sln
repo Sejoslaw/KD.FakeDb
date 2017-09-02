@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Linq", "KD.FakeDb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.XML", "KD.FakeDb.XML\KD.FakeDb.XML.csproj", "{0A79B1AC-F2B9-4CB1-B460-004CBE248068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.JSON", "KD.FakeDb.JSON\KD.FakeDb.JSON.csproj", "{DFDBE2E9-29D7-4EE0-B197-DDEE4182ADDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.JSON", "KD.FakeDb.JSON\KD.FakeDb.JSON.csproj", "{DFDBE2E9-29D7-4EE0-B197-DDEE4182ADDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Serialization", "KD.FakeDb.Serialization\KD.FakeDb.Serialization.csproj", "{436B91A4-778C-46A4-9C27-58F9D4E023B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DFDBE2E9-29D7-4EE0-B197-DDEE4182ADDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFDBE2E9-29D7-4EE0-B197-DDEE4182ADDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFDBE2E9-29D7-4EE0-B197-DDEE4182ADDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{436B91A4-778C-46A4-9C27-58F9D4E023B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436B91A4-778C-46A4-9C27-58F9D4E023B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436B91A4-778C-46A4-9C27-58F9D4E023B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436B91A4-778C-46A4-9C27-58F9D4E023B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

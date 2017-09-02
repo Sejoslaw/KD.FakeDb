@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KD.FakeDb.JSON
+﻿namespace KD.FakeDb.Serialization
 {
     /// <summary>
-    /// Contains constant JSON labels.
+    /// Serialziation constants.
     /// </summary>
-    public static class FakeDbJSONConstants
+    public static class FakeDbConstants
     {
         public static readonly string LabelDatabase = "Database";
         public static readonly string LabelTable = "Table";
@@ -23,5 +19,14 @@ namespace KD.FakeDb.JSON
         public static readonly string PropertyIndex = "Index";
         public static readonly string PropertyValue = "Value";
         public static readonly string PropertyColumnRecordType = "ColumnRecordType";
+
+        public static readonly string AttributeClass = PropertyClass;
+        public static readonly string AttributeName = PropertyName;
+        public static readonly string AttributeCount = PropertyCount;
+        public static readonly string AttributeColumns = PropertyColumns;
+        public static readonly string AttributeRows = PropertyRows;
+        public static readonly string AttributeIndex = PropertyIndex;
+        public static readonly string AttributeValue = PropertyValue;
+        public static readonly string AttributeColumnRecordType = PropertyColumnRecordType;
     }
 }

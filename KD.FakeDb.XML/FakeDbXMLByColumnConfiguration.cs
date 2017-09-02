@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KD.FakeDb.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -11,13 +12,13 @@ namespace KD.FakeDb.XML
     /// </summary>
     public class FakeDbXMLByColumnConfiguration : IFakeDbXMLConfiguration
     {
-        public void ReadXML(XmlReader reader, ref IFakeDatabase database)
+        public void ReadDatabase(XmlReader reader, ref IFakeDatabase database)
         {
             // XML Document
             var document = XDocument.Load(reader);
 
             // Create Database
-            var databaseElements = document.Descendants(XName.Get(FakeDbXMLConstants.LabelDatabase));
+            var databaseElements = document.Descendants(XName.Get(FakeDbConstants.LabelDatabase));
 
             if (!databaseElements.Any())
             {
@@ -25,18 +26,18 @@ namespace KD.FakeDb.XML
             }
 
             var databaseElement = databaseElements.ElementAt(0);
-            var databaseClass = databaseElement.Attribute(FakeDbXMLConstants.AttributeClass).Value;
+            var databaseClass = databaseElement.Attribute(FakeDbConstants.AttributeClass).Value;
             var databaseType = Type.GetType(databaseClass);
 
             database = (IFakeDatabase)Activator.CreateInstance(databaseType);
 
             // All Tables from File
-            var tables = document.Descendants(XName.Get(FakeDbXMLConstants.LabelTable));
+            var tables = document.Descendants(XName.Get(FakeDbConstants.LabelTable));
             foreach (var table in tables)
             {
                 // Create Table
-                var tableName = table.Attribute(XName.Get(FakeDbXMLConstants.AttributeName)).Value;
-                var tableClass = table.Attribute(XName.Get(FakeDbXMLConstants.AttributeClass)).Value;
+                var tableName = table.Attribute(XName.Get(FakeDbConstants.AttributeName)).Value;
+                var tableClass = table.Attribute(XName.Get(FakeDbConstants.AttributeClass)).Value;
                 var tableType = Type.GetType(tableClass);
 
                 IFakeTable tableToAdd = null;
@@ -62,15 +63,15 @@ namespace KD.FakeDb.XML
                 tableToAdd.Name = tableName;
 
                 // All Columns in Table
-                var columns = table.Descendants(XName.Get(FakeDbXMLConstants.LabelColumn));
+                var columns = table.Descendants(XName.Get(FakeDbConstants.LabelColumn));
                 foreach (var column in columns)
                 {
                     // Create Column
-                    var columnName = column.Attribute(XName.Get(FakeDbXMLConstants.AttributeName)).Value;
-                    var columnClass = column.Attribute(XName.Get(FakeDbXMLConstants.AttributeClass)).Value;
+                    var columnName = column.Attribute(XName.Get(FakeDbConstants.AttributeName)).Value;
+                    var columnClass = column.Attribute(XName.Get(FakeDbConstants.AttributeClass)).Value;
                     var columnType = Type.GetType(columnClass);
 
-                    var columnRecordClass = column.Attribute(XName.Get(FakeDbXMLConstants.AttributeColumnRecordType)).Value;
+                    var columnRecordClass = column.Attribute(XName.Get(FakeDbConstants.AttributeColumnRecordType)).Value;
                     var columnRecordType = Type.GetType(columnRecordClass);
 
                     IFakeColumn columnToAdd = null;
@@ -96,11 +97,11 @@ namespace KD.FakeDb.XML
                     columnToAdd.Name = columnName;
 
                     // All Records for this Column
-                    var records = column.Descendants(XName.Get(FakeDbXMLConstants.LabelRecord));
+                    var records = column.Descendants(XName.Get(FakeDbConstants.LabelRecord));
                     foreach (var record in records)
                     {
-                        var index = record.Attribute(XName.Get(FakeDbXMLConstants.AttributeIndex)).Value;
-                        var value = record.Attribute(XName.Get(FakeDbXMLConstants.AttributeValue)).Value;
+                        var index = record.Attribute(XName.Get(FakeDbConstants.AttributeIndex)).Value;
+                        var value = record.Attribute(XName.Get(FakeDbConstants.AttributeValue)).Value;
 
                         // Add Record to Column
                         columnToAdd.Add(new KeyValuePair<int, object>(Int32.Parse(index), value));
@@ -115,34 +116,34 @@ namespace KD.FakeDb.XML
             }
         }
 
-        public void WriteXML(XmlWriter writer, IFakeDatabase database)
+        public void WriteDatabase(XmlWriter writer, IFakeDatabase database)
         {
             writer.WriteStartDocument(); // Start Document
             {
-                writer.WriteStartElement(FakeDbXMLConstants.LabelDatabase); // Write Database
-                writer.WriteAttributeString(FakeDbXMLConstants.AttributeClass, database.GetType().AssemblyQualifiedName); // Database Class
+                writer.WriteStartElement(FakeDbConstants.LabelDatabase); // Write Database
+                writer.WriteAttributeString(FakeDbConstants.AttributeClass, database.GetType().AssemblyQualifiedName); // Database Class
                 {
                     database.ToList().ForEach(table =>
                     {
-                        writer.WriteStartElement(FakeDbXMLConstants.LabelTable); // Write Table
-                        writer.WriteAttributeString(FakeDbXMLConstants.AttributeClass, table.GetType().AssemblyQualifiedName); // Table Class
-                        writer.WriteAttributeString(FakeDbXMLConstants.AttributeName, table.Name); // Table Name
-                        writer.WriteAttributeString(FakeDbXMLConstants.AttributeColumns, table.ColumnCollection.Count.ToString()); // Columns Count
-                        writer.WriteAttributeString(FakeDbXMLConstants.AttributeRows, table.RowCollection.Count.ToString()); // Rows Count
+                        writer.WriteStartElement(FakeDbConstants.LabelTable); // Write Table
+                        writer.WriteAttributeString(FakeDbConstants.AttributeClass, table.GetType().AssemblyQualifiedName); // Table Class
+                        writer.WriteAttributeString(FakeDbConstants.AttributeName, table.Name); // Table Name
+                        writer.WriteAttributeString(FakeDbConstants.AttributeColumns, table.ColumnCollection.Count.ToString()); // Columns Count
+                        writer.WriteAttributeString(FakeDbConstants.AttributeRows, table.RowCollection.Count.ToString()); // Rows Count
                         {
                             table.ColumnCollection.ToList().ForEach(column =>
                             {
-                                writer.WriteStartElement(FakeDbXMLConstants.LabelColumn); // Write Column
-                                writer.WriteAttributeString(FakeDbXMLConstants.AttributeClass, column.GetType().AssemblyQualifiedName); // Column Class
-                                writer.WriteAttributeString(FakeDbXMLConstants.AttributeName, column.Name); // Column Name
-                                writer.WriteAttributeString(FakeDbXMLConstants.AttributeCount, column.Count.ToString()); // Column Count
-                                writer.WriteAttributeString(FakeDbXMLConstants.AttributeColumnRecordType, column.Type.AssemblyQualifiedName); // Column Records Type
+                                writer.WriteStartElement(FakeDbConstants.LabelColumn); // Write Column
+                                writer.WriteAttributeString(FakeDbConstants.AttributeClass, column.GetType().AssemblyQualifiedName); // Column Class
+                                writer.WriteAttributeString(FakeDbConstants.AttributeName, column.Name); // Column Name
+                                writer.WriteAttributeString(FakeDbConstants.AttributeCount, column.Count.ToString()); // Column Count
+                                writer.WriteAttributeString(FakeDbConstants.AttributeColumnRecordType, column.Type.AssemblyQualifiedName); // Column Records Type
                                 {
                                     column.ToList().ForEach(record =>
                                     {
-                                        writer.WriteStartElement(FakeDbXMLConstants.LabelRecord); // Write Record
-                                        writer.WriteAttributeString(FakeDbXMLConstants.AttributeIndex, record.Key.ToString()); // Record Index
-                                        writer.WriteAttributeString(FakeDbXMLConstants.AttributeValue, record.Value.ToString()); // Record Object
+                                        writer.WriteStartElement(FakeDbConstants.LabelRecord); // Write Record
+                                        writer.WriteAttributeString(FakeDbConstants.AttributeIndex, record.Key.ToString()); // Record Index
+                                        writer.WriteAttributeString(FakeDbConstants.AttributeValue, record.Value.ToString()); // Record Object
                                         writer.WriteEndElement();
                                     });
                                 }

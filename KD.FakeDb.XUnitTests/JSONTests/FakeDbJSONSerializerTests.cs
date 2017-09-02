@@ -1,4 +1,5 @@
 ﻿using KD.FakeDb.JSON;
+using KD.FakeDb.Serialization;
 using Newtonsoft.Json;
 using System.IO;
 using Xunit;
@@ -14,11 +15,12 @@ namespace KD.FakeDb.XUnitTests.JSONTests
 
             using (JsonWriter writer = new JsonTextWriter(File.CreateText("db.json")))
             {
-                var serializer = new FakeDbJSONSerializer()
+                var serializer = new FakeDbSerializer<JsonReader, JsonWriter>()
                 {
-                    Database = db
+                    Database = db,
+                    Configuration = new FakeDbJSONByColumnConfiguration()
                 };
-                serializer.WriteJSON(writer);
+                serializer.WriteDatabase(writer);
             }
 
             Assert.True(db != null);
@@ -29,8 +31,8 @@ namespace KD.FakeDb.XUnitTests.JSONTests
         {
             using (JsonReader reader = new JsonTextReader(File.OpenText("db.json")))
             {
-                var serializer = new FakeDbJSONSerializer();
-                serializer.ReadJSON(reader);
+                var serializer = new FakeDbSerializer<JsonReader, JsonWriter>();
+                serializer.ReadDatabase(reader);
 
                 var db = serializer.Database;
 

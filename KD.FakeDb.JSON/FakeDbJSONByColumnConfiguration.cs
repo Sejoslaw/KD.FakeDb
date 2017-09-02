@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using KD.FakeDb.Serialization;
+using Newtonsoft.Json;
 using System.Linq;
 
 namespace KD.FakeDb.JSON
@@ -8,52 +9,52 @@ namespace KD.FakeDb.JSON
     /// </summary>
     public class FakeDbJSONByColumnConfiguration : IFakeDbJSONConfiguration
     {
-        public void ReadJSON(JsonReader reader, ref IFakeDatabase database)
+        public void ReadDatabase(JsonReader reader, ref IFakeDatabase database)
         {
         }
 
-        public void WriteJSON(JsonWriter writer, IFakeDatabase database)
+        public void WriteDatabase(JsonWriter writer, IFakeDatabase database)
         {
             // Start Document
             writer.WriteStartObject(); // Database object
             {
-                writer.WritePropertyName(FakeDbJSONConstants.LabelDatabase); writer.WriteValue(""); // Write Database label
-                writer.WritePropertyName(FakeDbJSONConstants.PropertyClass); writer.WriteValue(database.GetType().AssemblyQualifiedName); // Database Class
+                writer.WritePropertyName(FakeDbConstants.LabelDatabase); writer.WriteValue(""); // Write Database label
+                writer.WritePropertyName(FakeDbConstants.PropertyClass); writer.WriteValue(database.GetType().AssemblyQualifiedName); // Database Class
                 {
-                    writer.WritePropertyName(FakeDbJSONConstants.LabelTable); // Start writing Tables in form of array
+                    writer.WritePropertyName(FakeDbConstants.LabelTable); // Start writing Tables in form of array
                     writer.WriteStartArray();
                     {
                         database.ToList().ForEach(table =>
                         {
                             writer.WriteStartObject(); // Table object
                             {
-                                writer.WritePropertyName(FakeDbJSONConstants.LabelTable); writer.WriteValue(""); // Write Table label
-                                writer.WritePropertyName(FakeDbJSONConstants.PropertyClass); writer.WriteValue(table.GetType().AssemblyQualifiedName); // Table Class
-                                writer.WritePropertyName(FakeDbJSONConstants.PropertyName); writer.WriteValue(table.Name); // Table Name
-                                writer.WritePropertyName(FakeDbJSONConstants.PropertyColumns); writer.WriteValue(table.ColumnCollection.Count); // Columns Count
-                                writer.WritePropertyName(FakeDbJSONConstants.PropertyRows); writer.WriteValue(table.RowCollection.Count); // Rows Count
-                                writer.WritePropertyName(FakeDbJSONConstants.LabelColumn);
+                                writer.WritePropertyName(FakeDbConstants.LabelTable); writer.WriteValue(""); // Write Table label
+                                writer.WritePropertyName(FakeDbConstants.PropertyClass); writer.WriteValue(table.GetType().AssemblyQualifiedName); // Table Class
+                                writer.WritePropertyName(FakeDbConstants.PropertyName); writer.WriteValue(table.Name); // Table Name
+                                writer.WritePropertyName(FakeDbConstants.PropertyColumns); writer.WriteValue(table.ColumnCollection.Count); // Columns Count
+                                writer.WritePropertyName(FakeDbConstants.PropertyRows); writer.WriteValue(table.RowCollection.Count); // Rows Count
+                                writer.WritePropertyName(FakeDbConstants.LabelColumn);
                                 writer.WriteStartArray();
                                 {
                                     table.ColumnCollection.ToList().ForEach(column =>
                                     {
                                         writer.WriteStartObject(); // Table object
                                         {
-                                            writer.WritePropertyName(FakeDbJSONConstants.LabelColumn); writer.WriteValue(""); // Write Column label
-                                            writer.WritePropertyName(FakeDbJSONConstants.PropertyClass); writer.WriteValue(column.GetType().AssemblyQualifiedName); // Column Class
-                                            writer.WritePropertyName(FakeDbJSONConstants.PropertyName); writer.WriteValue(column.Name); // Column Name
-                                            writer.WritePropertyName(FakeDbJSONConstants.PropertyCount); writer.WriteValue(column.Count); // Column Count
-                                            writer.WritePropertyName(FakeDbJSONConstants.PropertyColumnRecordType); writer.WriteValue(column.Type.AssemblyQualifiedName); // Column Record Type
-                                            writer.WritePropertyName(FakeDbJSONConstants.LabelRecord);
+                                            writer.WritePropertyName(FakeDbConstants.LabelColumn); writer.WriteValue(""); // Write Column label
+                                            writer.WritePropertyName(FakeDbConstants.PropertyClass); writer.WriteValue(column.GetType().AssemblyQualifiedName); // Column Class
+                                            writer.WritePropertyName(FakeDbConstants.PropertyName); writer.WriteValue(column.Name); // Column Name
+                                            writer.WritePropertyName(FakeDbConstants.PropertyCount); writer.WriteValue(column.Count); // Column Count
+                                            writer.WritePropertyName(FakeDbConstants.PropertyColumnRecordType); writer.WriteValue(column.Type.AssemblyQualifiedName); // Column Record Type
+                                            writer.WritePropertyName(FakeDbConstants.LabelRecord);
                                             writer.WriteStartArray();
                                             {
                                                 column.ToList().ForEach(record =>
                                                 {
                                                     writer.WriteStartObject(); // Column Record object
                                                     {
-                                                        writer.WritePropertyName(FakeDbJSONConstants.LabelRecord); writer.WriteValue(""); // Write Record label
-                                                        writer.WritePropertyName(FakeDbJSONConstants.PropertyIndex); writer.WriteValue(record.Key.ToString()); // Record Index
-                                                        writer.WritePropertyName(FakeDbJSONConstants.PropertyValue); writer.WriteValue(record.Value.ToString()); // Record Value
+                                                        writer.WritePropertyName(FakeDbConstants.LabelRecord); writer.WriteValue(""); // Write Record label
+                                                        writer.WritePropertyName(FakeDbConstants.PropertyIndex); writer.WriteValue(record.Key.ToString()); // Record Index
+                                                        writer.WritePropertyName(FakeDbConstants.PropertyValue); writer.WriteValue(record.Value.ToString()); // Record Value
                                                     }
                                                     writer.WriteEndObject();
                                                 });
