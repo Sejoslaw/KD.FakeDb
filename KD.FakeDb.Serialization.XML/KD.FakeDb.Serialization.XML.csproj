@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
@@ -6,15 +6,12 @@
     <Company>Krzysztof Dobrzynski</Company>
     <Copyright>https://github.com/Sejoslaw</Copyright>
     <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.JSON</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.Serialization.XML</PackageProjectUrl>
+    <PackageId>KD.FakeDb.Serialization.XML</PackageId>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>KD.FakeDb.JSON.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>KD.FakeDb.Serialization.XML.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\KD.FakeDb.Serialization\KD.FakeDb.Serialization.csproj" />

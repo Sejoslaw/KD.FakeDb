@@ -1,11 +1,10 @@
-﻿using KD.FakeDb.Serialization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace KD.FakeDb.XML
+namespace KD.FakeDb.Serialization.XML
 {
     /// <summary>
     /// Configuration which will save each <see cref="IFakeTable"/> by it's columns.

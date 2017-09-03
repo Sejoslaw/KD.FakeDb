@@ -1,7 +1,6 @@
-﻿using KD.FakeDb.Serialization;
-using System.Xml;
+﻿using System.Xml;
 
-namespace KD.FakeDb.XML
+namespace KD.FakeDb.Serialization.XML
 {
     /// <summary>
     /// XML configuration for <see cref="FakeDbSerializer{TReader, TWriter}"/>.

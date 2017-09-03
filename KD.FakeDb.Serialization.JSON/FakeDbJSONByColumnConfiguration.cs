@@ -1,11 +1,10 @@
-﻿using KD.FakeDb.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KD.FakeDb.JSON
+namespace KD.FakeDb.Serialization.JSON
 {
     /// <summary>
     /// Configuration which will save each <see cref="IFakeDatabase"/> by it's columns.

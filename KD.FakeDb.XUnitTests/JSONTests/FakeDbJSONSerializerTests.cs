@@ -1,5 +1,5 @@
-﻿using KD.FakeDb.JSON;
-using KD.FakeDb.Serialization;
+﻿using KD.FakeDb.Serialization;
+using KD.FakeDb.Serialization.JSON;
 using Newtonsoft.Json;
 using System.IO;
 using Xunit;

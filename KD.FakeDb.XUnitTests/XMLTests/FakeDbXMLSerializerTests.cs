@@ -1,5 +1,5 @@
 ﻿using KD.FakeDb.Serialization;
-using KD.FakeDb.XML;
+using KD.FakeDb.Serialization.XML;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;

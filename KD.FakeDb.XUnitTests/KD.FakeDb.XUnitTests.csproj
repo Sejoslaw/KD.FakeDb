@@ -35,10 +35,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KD.FakeDb.Factory\KD.FakeDb.Factory.csproj" />
-    <ProjectReference Include="..\KD.FakeDb.JSON\KD.FakeDb.JSON.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Linq\KD.FakeDb.Linq.csproj" />
+    <ProjectReference Include="..\KD.FakeDb.Serialization.JSON\KD.FakeDb.Serialization.JSON.csproj" />
+    <ProjectReference Include="..\KD.FakeDb.Serialization.XML\KD.FakeDb.Serialization.XML.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Serialization\KD.FakeDb.Serialization.csproj" />
-    <ProjectReference Include="..\KD.FakeDb.XML\KD.FakeDb.XML.csproj" />
     <ProjectReference Include="..\KD.FakeDb\KD.FakeDb.csproj" />
   </ItemGroup>
 

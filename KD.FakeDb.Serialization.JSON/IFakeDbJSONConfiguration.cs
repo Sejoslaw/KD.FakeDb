@@ -1,7 +1,6 @@
-﻿using KD.FakeDb.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace KD.FakeDb.JSON
+namespace KD.FakeDb.Serialization.JSON
 {
     /// <summary>
     /// JSON configuration for <see cref="FakeDbSerializer{TReader, TWriter}"/>.
