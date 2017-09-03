@@ -41,6 +41,7 @@ namespace KD.FakeDb.XUnitTests.XMLTests
             var db = serializer.Database;
 
             Assert.True(db != null);
+            Assert.Equal("Test Database", db.Name);
             Assert.True(db.TableCollection.Count == 2);
             Assert.Equal("Poland", db["Countries"]["CountryName"][0]);
         }

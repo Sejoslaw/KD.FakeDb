@@ -16,9 +16,14 @@
         /// Returns new instance of <see cref="IFakeDatabase"/>.
         /// </summary>
         /// <returns></returns>
-        public static IFakeDatabase NewDatabase()
+        public static IFakeDatabase NewDatabase(string databaseName)
         {
-            return new FakeDatabase();
+            var db = new FakeDatabase()
+            {
+                Name = databaseName
+            };
+
+            return db;
         }
     }
 }

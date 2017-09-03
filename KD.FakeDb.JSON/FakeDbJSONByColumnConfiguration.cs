@@ -21,6 +21,14 @@ namespace KD.FakeDb.JSON
             // Create Database
             database = SerializerUtils.TryToBuildObject<IFakeDatabase>(databaseType, null);
 
+            if (database == null)
+            {
+                throw new Exception("Database is null, after setting.");
+            }
+
+            // Set Database Name
+            database.Name = databaseJSON[FakeDbConstants.PropertyName].Value<string>();
+
             // For Each Table in file
             foreach (var tableJSON in databaseJSON.Property(FakeDbConstants.LabelTable).Value.AsJEnumerable())
             {
@@ -71,6 +79,7 @@ namespace KD.FakeDb.JSON
             writer.WriteStartObject(); // Database object
             {
                 writer.WritePropertyName(FakeDbConstants.LabelDatabase); writer.WriteValue(""); // Write Database label
+                writer.WritePropertyName(FakeDbConstants.PropertyName); writer.WriteValue(database.Name); // Database Name
                 writer.WritePropertyName(FakeDbConstants.PropertyClass); writer.WriteValue(database.GetType().AssemblyQualifiedName); // Database Class
                 {
                     writer.WritePropertyName(FakeDbConstants.LabelTable); // Start writing Tables in form of array

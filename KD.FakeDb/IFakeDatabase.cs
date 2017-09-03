@@ -16,6 +16,11 @@ namespace KD.FakeDb
         IFakeTable this[string tableName] { get; }
 
         /// <summary>
+        /// Returns the Name of Database.
+        /// </summary>
+        string Name { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="IFakeTableCollection"/> of Tables which this <see cref="IFakeDatabase"/> contains.
         /// </summary>
         IFakeTableCollection TableCollection { get; }

@@ -16,6 +16,8 @@ namespace KD.FakeDb
             }
         }
 
+        public string Name { get; set; }
+
         public IFakeTableCollection TableCollection { get; }
 
         public int Count

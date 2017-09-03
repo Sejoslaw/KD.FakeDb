@@ -18,7 +18,7 @@ namespace KD.FakeDb.XUnitTests
         /// <returns></returns>
         public static IFakeDatabase GetDatabaseWithData()
         {
-            var db = FakeDatabaseFactory.NewDatabase();
+            var db = FakeDatabaseFactory.NewDatabase("Test Database");
 
             var accTable = db.AddTable("Accounts");
             accTable.AddColumn("AccountId", typeof(Guid));

@@ -30,6 +30,15 @@ namespace KD.FakeDb.XML
 
             database = SerializerUtils.TryToBuildObject<IFakeDatabase>(databaseType, null);
 
+            // If something went really wrong, throw Exception
+            if (database == null)
+            {
+                throw new Exception("Database is still null, after initialization.");
+            }
+
+            // Read Database Name
+            database.Name = databaseElement.Attribute(XName.Get(FakeDbConstants.AttributeName)).Value;
+
             // All Tables from File
             var tables = document.Descendants(XName.Get(FakeDbConstants.LabelTable));
             foreach (var table in tables)
@@ -84,6 +93,7 @@ namespace KD.FakeDb.XML
             writer.WriteStartDocument(); // Start Document
             {
                 writer.WriteStartElement(FakeDbConstants.LabelDatabase); // Write Database
+                writer.WriteAttributeString(FakeDbConstants.AttributeName, database.Name); // Database Name
                 writer.WriteAttributeString(FakeDbConstants.AttributeClass, database.GetType().AssemblyQualifiedName); // Database Class
                 {
                     database.ToList().ForEach(table =>
