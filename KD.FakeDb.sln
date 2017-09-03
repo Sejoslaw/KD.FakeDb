@@ -23,6 +23,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Serialization.JSO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Serialization.XML", "KD.FakeDb.Serialization.XML\KD.FakeDb.Serialization.XML.csproj", "{F2190585-99DC-45A7-89A0-C719C57FD0A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Connection", "KD.FakeDb.Connection\KD.FakeDb.Connection.csproj", "{844E058B-EB99-4546-B2DC-488D3B24F864}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Connection.MySQL", "KD.FakeDb.Connection.MySQL\KD.FakeDb.Connection.MySQL.csproj", "{8143F2B4-8864-4849-8BDF-F3F5A2394D41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.XUnitTests.Connection", "KD.FakeDb.XUnitTests.Connection\KD.FakeDb.XUnitTests.Connection.csproj", "{3F119470-B623-46B0-954E-45BD2939952A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +63,18 @@ Global
 		{F2190585-99DC-45A7-89A0-C719C57FD0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2190585-99DC-45A7-89A0-C719C57FD0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2190585-99DC-45A7-89A0-C719C57FD0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844E058B-EB99-4546-B2DC-488D3B24F864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844E058B-EB99-4546-B2DC-488D3B24F864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844E058B-EB99-4546-B2DC-488D3B24F864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844E058B-EB99-4546-B2DC-488D3B24F864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8143F2B4-8864-4849-8BDF-F3F5A2394D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8143F2B4-8864-4849-8BDF-F3F5A2394D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8143F2B4-8864-4849-8BDF-F3F5A2394D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8143F2B4-8864-4849-8BDF-F3F5A2394D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F119470-B623-46B0-954E-45BD2939952A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F119470-B623-46B0-954E-45BD2939952A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F119470-B623-46B0-954E-45BD2939952A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F119470-B623-46B0-954E-45BD2939952A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

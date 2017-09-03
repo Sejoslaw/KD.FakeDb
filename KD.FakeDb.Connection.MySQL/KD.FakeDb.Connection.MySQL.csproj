@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Authors>Krzysztof Dobrzynski</Authors>
+    <Company>Krzysztof Dobrzynski</Company>
+    <Copyright>https://github.com/Sejoslaw</Copyright>
+    <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.Connection.MySQL</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>KD.FakeDb.Connection.MySQL.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="0.26.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KD.FakeDb.Connection\KD.FakeDb.Connection.csproj" />
+    <ProjectReference Include="..\KD.FakeDb\KD.FakeDb.csproj" />
+  </ItemGroup>
+
+</Project>
