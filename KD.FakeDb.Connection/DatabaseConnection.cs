@@ -8,6 +8,7 @@ namespace KD.FakeDb.Connection
     /// Connection which is used for mapping Real Database to <see cref="IFakeDatabase"/>.
     /// </summary>
     /// <typeparam name="TDbConnection"> Type of <see cref="DbConnection"/>. </typeparam>
+    /// <typeparam name="TDbDataReader"> Type of <see cref="DbDataReader"/>. </typeparam>
     public abstract class DatabaseConnection<TDbConnection, TDbDataReader>
         where TDbConnection : DbConnection
         where TDbDataReader : DbDataReader
@@ -35,7 +36,7 @@ namespace KD.FakeDb.Connection
         public abstract string GetColumnNameWithTableColumnNames();
 
         /// <summary>
-        /// Returns the name of a Column which holds Name of a data type of COlumn.
+        /// Returns the name of a Column which holds Name of a data type of Column.
         /// By default it should be something like "DATA_TYPE".
         /// DATA_TYPE - holds name of a data type inside Column. Ex: char, varchar, int, etc.
         /// COLUMN_TYPE - holds full name of a data type inside Column. Ex: char(36), varchar(50), int, etc.

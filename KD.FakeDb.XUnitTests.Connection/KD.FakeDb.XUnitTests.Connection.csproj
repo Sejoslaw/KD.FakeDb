@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KD.FakeDb.Connection.MSSQL\KD.FakeDb.Connection.MSSQL.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Connection.MySQL\KD.FakeDb.Connection.MySQL.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Connection\KD.FakeDb.Connection.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Factory\KD.FakeDb.Factory.csproj" />
