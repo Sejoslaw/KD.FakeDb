@@ -41,7 +41,7 @@ TODO:
 - [ ] Added importing / exporting Fake Database to / from Excel File Format or other File Format.
 - [ ] Added importing / exporting Fake Database to / from CRM.
 - [ ] Add support for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to read SQL Query.
-- [ ] Add support for reading other Databases (for instance: Oracle, PostreSQL, MongoDB, DB2, Microsoft Access, Cassandra, Redis, Elasticsearch, SQLite, etc.).
+- [ ] Add support for reading other Databases (for instance: Oracle, PostreSQL, MongoDB, DB2, Microsoft Access, Cassandra, Redis, Elasticsearch, SQLite, MariaDB, Sybase, Teradata, Firebird, Derby, etc.).
 
 TUTORIALS:
 ---
