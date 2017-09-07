@@ -89,7 +89,7 @@ TUTORIALS:
 
 4. Read data from outside Database (MySQL, MSSQL, etc.). Used Database is MSSQL.
 ```csharp
-  public void Test_if_database_was_mapped_to_Fake_and_saved_in_XML()
+  public void Test_if_database_was_mapped_to_Fake()
   {
       var dbConn = new DatabaseConnectionMSSQL() // Connection used to connect to MSSQL Database
       {
