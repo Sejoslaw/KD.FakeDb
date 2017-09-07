@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace KD.FakeDb.Linq
+﻿namespace KD.FakeDb.Linq
 {
     /// <summary>
     /// Describes Linq methods for <see cref="IFakeRow"/>.
