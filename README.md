@@ -28,8 +28,8 @@ Project Name | Description
 DONE:
 ---
 
-- [X] Add Factory for static and dynamic Fake Database creation.
-- [X] Finish including remade Linq methods (Almost any basic FakeDb object implements IEnumerable).
+- [X] Added Factory for static and dynamic Fake Database creation.
+- [X] Finished including remade Linq methods (Almost any basic FakeDb object implements IEnumerable).
 - [X] Added importing / exporting Fake Database to / from XML.
 - [X] Added importing / exporting Fake Database to / from JSON.
 - [X] Added converting existing MySQL Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
@@ -38,8 +38,9 @@ DONE:
 TODO:
 ---
 
-- [ ] Added importing / exporting Fake Database to / from Excel File Format or other File Format.
-- [ ] Added importing / exporting Fake Database to / from CRM.
+- [ ] Add serialization for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) using [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
+- [ ] Add importing / exporting Fake Database to / from Excel File Format or other File Format.
+- [ ] Add importing / exporting Fake Database to / from CRM.
 - [ ] Add support for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to read SQL Query.
 - [ ] Add support for reading other Databases (for instance: Oracle, PostreSQL, MongoDB, DB2, Microsoft Access, Cassandra, Redis, Elasticsearch, SQLite, MariaDB, Sybase, Teradata, Firebird, Derby, etc.).
 - [ ] Add support for Entity Framework to generate MDF file from [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
