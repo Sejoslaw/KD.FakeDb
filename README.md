@@ -38,6 +38,7 @@ DONE:
 TODO:
 ---
 
+- [ ] Add Events (OnCreate, OnUpdate, OnDelete, etc.) as an extension.
 - [ ] Add serialization for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) using [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
 - [ ] Add importing / exporting Fake Database to / from Excel File Format or other File Format.
 - [ ] Add importing / exporting Fake Database to / from CRM.
