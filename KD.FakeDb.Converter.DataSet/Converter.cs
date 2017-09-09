@@ -10,8 +10,6 @@ namespace KD.FakeDb.Converter.DataSet
         /// <summary>
         /// Converts current <see cref="IFakeDatabase"/> to <see cref="System.Data.DataSet"/>.
         /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public static System.Data.DataSet ToDataSet(this IFakeDatabase database)
         {
             // Create DataSet with IFakeDatabase name
