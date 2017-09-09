@@ -113,3 +113,21 @@ TUTORIALS:
       var fakeDb = dbConn.Database; // Fake Database filled with data taken from MSSQL Database.
   }
 ```
+
+5. Convert [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx)
+```csharp
+  using KD.FakeDb.Converter.DataSet;
+  
+  //...
+  
+  public void Test_if_IFakeDatabase_was_converted_to_DataSet()
+  {
+      var fakeDb = FakeDatabaseFactory.NewDatabase("New Test Database Name"); // New Fake Database
+      
+      //...fill Fake Database with some data...
+      
+      System.Data.DataSet dataSet = fakeDb.ToDataSet(); // Convert Fake Database to DataSet
+      
+      //...
+  }
+```
