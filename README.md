@@ -26,6 +26,10 @@ Project Name | Description
 **[KD.FakeDb.XUnitTests](KD.FakeDb.XUnitTests)** | Tests made with xUnit Framework.
 **[KD.FakeDb.XUnitTests.Connection](KD.FakeDb.XUnitTests.Connection)** | Tests with xUnit Framework made specially for different connections.
 
+DEPENDENCY DIAGRAM (Where "Externals" are .NET Core libraries and Project-Required libraries. For example: "Newtonsoft.Json" for "KD.FakeDb.Serialization.JSON"):
+---
+
+![](https://raw.githubusercontent.com/Sejoslaw/KD.FakeDb/master/img/Dependency/Dependency%20Diagram.PNG)
 
 DONE:
 ---
