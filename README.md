@@ -204,3 +204,23 @@ TUTORIALS:
       //...Now IFakeDatabase is filled with values readed from DataSet...
   }
 ```
+
+7. Export [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to CSV file
+```csharp
+  public void Export_to_CSV(IFakeDatabase fakeDb) // Fake Database which will be exported to CSV file
+  {
+      // Create new Exporter and specify the Configuration which should use
+      var exporter = new FakeDbExporter<FileStream>()
+      {
+          Configuration = new FakeDbExporterCSVConfiguration()
+      };
+      
+      // Create Stream for File
+      // INFO: Exporter will require Write permission, otherwise it will thrown Exception
+      FileStream fileStream = new FileStream("db.csv", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+      
+      // Export given Fake Database with specified FileStream
+      // INFO: Stream will be closed after exporting
+      exporter.Export(fileStream, fakeDb);
+  }
+```
