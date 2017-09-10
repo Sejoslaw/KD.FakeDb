@@ -9,4 +9,3 @@ before_build:
 
 test_script:
   - ps: dotnet test .\KD.FakeDb.XUnitTests\KD.FakeDb.XUnitTests.csproj
-  - ps: dotnet test .\KD.FakeDb.XUnitTests.Connection\KD.FakeDb.XUnitTests.Connection.csproj
