@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Export", "KD.Fake
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Export.Files", "KD.FakeDb.Export.Files\KD.FakeDb.Export.Files.csproj", "{19802631-71F0-4BF6-BC02-C74A113FE536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Export.Files.CSV", "KD.FakeDb.Export.Files.CSV\KD.FakeDb.Export.Files.CSV.csproj", "{7275440C-B3ED-4754-B869-371A9856DF3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{19802631-71F0-4BF6-BC02-C74A113FE536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19802631-71F0-4BF6-BC02-C74A113FE536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19802631-71F0-4BF6-BC02-C74A113FE536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7275440C-B3ED-4754-B869-371A9856DF3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7275440C-B3ED-4754-B869-371A9856DF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7275440C-B3ED-4754-B869-371A9856DF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7275440C-B3ED-4754-B869-371A9856DF3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
