@@ -37,6 +37,7 @@
     <ProjectReference Include="..\KD.FakeDb.Converter.DataSet\KD.FakeDb.Converter.DataSet.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Factory\KD.FakeDb.Factory.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Linq\KD.FakeDb.Linq.csproj" />
+    <ProjectReference Include="..\KD.FakeDb.Serialization.DataSet\KD.FakeDb.Serialization.DataSet.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Serialization.JSON\KD.FakeDb.Serialization.JSON.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Serialization.XML\KD.FakeDb.Serialization.XML.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Serialization\KD.FakeDb.Serialization.csproj" />

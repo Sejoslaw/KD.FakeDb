@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.XUnitTests.Connec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Connection.MSSQL", "KD.FakeDb.Connection.MSSQL\KD.FakeDb.Connection.MSSQL.csproj", "{027AC351-D266-450D-94AF-E20B900D1C18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Converter.DataSet", "KD.FakeDb.Converter.DataSet\KD.FakeDb.Converter.DataSet.csproj", "{02F2801F-B98B-4022-9B5E-70570F2D2334}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Converter.DataSet", "KD.FakeDb.Converter.DataSet\KD.FakeDb.Converter.DataSet.csproj", "{02F2801F-B98B-4022-9B5E-70570F2D2334}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Serialization.DataSet", "KD.FakeDb.Serialization.DataSet\KD.FakeDb.Serialization.DataSet.csproj", "{AE922E37-EF34-47B7-95E9-54357955672D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{02F2801F-B98B-4022-9B5E-70570F2D2334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02F2801F-B98B-4022-9B5E-70570F2D2334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02F2801F-B98B-4022-9B5E-70570F2D2334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE922E37-EF34-47B7-95E9-54357955672D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE922E37-EF34-47B7-95E9-54357955672D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE922E37-EF34-47B7-95E9-54357955672D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE922E37-EF34-47B7-95E9-54357955672D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

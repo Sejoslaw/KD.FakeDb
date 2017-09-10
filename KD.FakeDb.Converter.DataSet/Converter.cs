@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 
 namespace KD.FakeDb.Converter.DataSet
 {
@@ -52,6 +53,44 @@ namespace KD.FakeDb.Converter.DataSet
 
             // Return filled DataSet
             return dataSet;
+        }
+
+        /// <summary>
+        /// Converts current <see cref="System.Data.DataSet"/> to given <see cref="IFakeDatabase"/>. 
+        /// </summary>
+        public static void ToFakeDatabase(this System.Data.DataSet dataSet, IFakeDatabase fakeDatabase)
+        {
+            // Set new name for Fake Database
+            fakeDatabase.Name = dataSet.DataSetName;
+
+            // Clear Fake Database and prepare it to fill with Tables from DataSet
+            fakeDatabase.Clear();
+
+            // Add each Table to Fake Database
+            foreach (DataTable dataTable in dataSet.Tables)
+            {
+                // Create new Fake Table
+                var fakeTable = fakeDatabase.AddTable(dataTable.TableName);
+
+                // For each Column add new Fake Column
+                foreach (DataColumn dataColumn in dataTable.Columns)
+                {
+                    // Create new Fake Column
+                    var fakeColumn = fakeTable.AddColumn(dataColumn.ColumnName, dataColumn.DataType);
+
+                    // Add Records to Fake Column
+                    for (int i = 0; i < dataTable.Rows.Count; ++i)
+                    {
+                        DataRow dataRow = dataTable.Rows[i];
+
+                        // Record value
+                        var record = dataRow[dataColumn];
+
+                        // Add record to Fake Column
+                        fakeColumn.Add(new KeyValuePair<int, object>(i, record));
+                    }
+                }
+            }
         }
     }
 }
