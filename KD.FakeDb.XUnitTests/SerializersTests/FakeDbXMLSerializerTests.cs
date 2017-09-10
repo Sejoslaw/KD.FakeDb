@@ -1,5 +1,6 @@
 ﻿using KD.FakeDb.Serialization;
 using KD.FakeDb.Serialization.XML;
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -14,6 +15,12 @@ namespace KD.FakeDb.XUnitTests.XMLTests
         [Fact]
         public void Try_to_write_Database_to_XML()
         {
+            try
+            {
+                File.Delete(PATH);
+            }
+            catch (Exception) { }
+
             var db = FakeDatabaseData.GetDatabaseWithData();
             var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             using (var writer = XmlWriter.Create(fileStream))

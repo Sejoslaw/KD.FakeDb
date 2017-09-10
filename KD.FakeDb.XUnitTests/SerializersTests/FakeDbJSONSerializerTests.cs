@@ -1,6 +1,7 @@
 ﻿using KD.FakeDb.Serialization;
 using KD.FakeDb.Serialization.JSON;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using Xunit;
 
@@ -13,7 +14,11 @@ namespace KD.FakeDb.XUnitTests.JSONTests
         [Fact]
         public void Try_to_write_Database_to_JSON()
         {
-            File.Delete(PATH);
+            try
+            {
+                File.Delete(PATH);
+            }
+            catch (Exception) { }
 
             var db = FakeDatabaseData.GetDatabaseWithData();
 

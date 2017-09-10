@@ -1,7 +1,9 @@
 ﻿using KD.FakeDb.Factory;
 using KD.FakeDb.Serialization;
 using KD.FakeDb.Serialization.DataSet;
+using System;
 using System.IO;
+using System.Threading;
 using System.Xml;
 using System.Xml.Linq;
 using Xunit;
@@ -11,14 +13,20 @@ namespace KD.FakeDb.XUnitTests.SerializersTests
     public class FakeDbDataSetSerializerTests
     {
         public const string PATH = "db_DataSet.xml";
+        public const string PATH_2 = "db_DataSet_read_me.xml";
 
         [Fact]
         public void Test_if_IFakeDatabase_was_saved_to_file_using_DataSet()
         {
-            File.Delete(PATH);
+            try
+            {
+                File.Delete(PATH);
+            }
+            catch (Exception) { }
 
             var db = FakeDatabaseData.GetDatabaseWithData();
             var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+
             using (var writer = XmlWriter.Create(fileStream))
             {
                 var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
@@ -35,19 +43,34 @@ namespace KD.FakeDb.XUnitTests.SerializersTests
         [Fact]
         public void Try_to_read_IFakeDatabase_from_file_using_DataSet()
         {
-            // Pre-generate test file and fill it with data.
-            Test_if_IFakeDatabase_was_saved_to_file_using_DataSet();
+            try
+            {
+                File.Delete(PATH_2);
+            }
+            catch (Exception) { }
 
-            var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            var db = FakeDatabaseData.GetDatabaseWithData();
+            var fileStream = new FileStream(PATH_2, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
             {
-                Database = FakeDatabaseFactory.NewDatabase("Some random Database name that will be replaced after fill from DataSet."),
+                Database = db,
                 Configuration = new FakeDbDataSetConfiguration()
             };
-            serializer.ReadDatabase(XDocument.Load(fileStream).CreateReader());
 
-            var db = serializer.Database;
+            lock (new object())
+            {
+                serializer.WriteDatabase(XmlWriter.Create(fileStream));
+                fileStream.Flush();
+                fileStream.Close();
+            }
+
+            // Prepare to read
+            serializer.Database = FakeDatabaseFactory.NewDatabase("New empty Database for Read Test");
+            fileStream = new FileStream(PATH_2, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            serializer.ReadDatabase(XmlReader.Create(fileStream));
+
+            var dbReaded = serializer.Database;
 
             Assert.True(db != null);
             Assert.Equal("Test Database", db.Name);
