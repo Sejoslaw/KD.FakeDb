@@ -8,12 +8,16 @@ namespace KD.FakeDb.XUnitTests.JSONTests
 {
     public class FakeDbJSONSerializerTests
     {
+        public const string PATH = "db.json";
+
         [Fact]
         public void Try_to_write_Database_to_JSON()
         {
+            File.Delete(PATH);
+
             var db = FakeDatabaseData.GetDatabaseWithData();
 
-            using (JsonWriter writer = new JsonTextWriter(File.CreateText("db.json")))
+            using (JsonWriter writer = new JsonTextWriter(File.CreateText(PATH)))
             {
                 var serializer = new FakeDbSerializer<JsonReader, JsonWriter>()
                 {
@@ -29,7 +33,10 @@ namespace KD.FakeDb.XUnitTests.JSONTests
         [Fact]
         public void Try_to_read_Database_from_JSON()
         {
-            using (JsonReader reader = new JsonTextReader(File.OpenText("db.json")))
+            // Pre-generate test file and fill it with data.
+            Try_to_write_Database_to_JSON();
+
+            using (JsonReader reader = new JsonTextReader(File.OpenText(PATH)))
             {
                 var serializer = new FakeDbSerializer<JsonReader, JsonWriter>()
                 {

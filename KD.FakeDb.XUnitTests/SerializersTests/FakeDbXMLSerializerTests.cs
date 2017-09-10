@@ -9,11 +9,13 @@ namespace KD.FakeDb.XUnitTests.XMLTests
 {
     public class FakeDbXMLSerializerTests
     {
+        public const string PATH = "db.xml";
+
         [Fact]
         public void Try_to_write_Database_to_XML()
         {
             var db = FakeDatabaseData.GetDatabaseWithData();
-            var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             using (var writer = XmlWriter.Create(fileStream))
             {
                 var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
@@ -30,7 +32,10 @@ namespace KD.FakeDb.XUnitTests.XMLTests
         [Fact]
         public void Try_to_read_Database_from_XML()
         {
-            var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            // Pre-generate test file and fill it with data.
+            Try_to_write_Database_to_XML();
+
+            var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
             {

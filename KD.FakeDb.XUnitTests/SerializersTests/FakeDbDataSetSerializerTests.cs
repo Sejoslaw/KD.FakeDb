@@ -10,11 +10,15 @@ namespace KD.FakeDb.XUnitTests.SerializersTests
 {
     public class FakeDbDataSetSerializerTests
     {
+        public const string PATH = "db_DataSet.xml";
+
         [Fact]
         public void Test_if_IFakeDatabase_was_saved_to_file_using_DataSet()
         {
+            File.Delete(PATH);
+
             var db = FakeDatabaseData.GetDatabaseWithData();
-            var fileStream = new FileStream("db_DataSet.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             using (var writer = XmlWriter.Create(fileStream))
             {
                 var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
@@ -31,7 +35,10 @@ namespace KD.FakeDb.XUnitTests.SerializersTests
         [Fact]
         public void Try_to_read_IFakeDatabase_from_file_using_DataSet()
         {
-            var fileStream = new FileStream("db_DataSet.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+            // Pre-generate test file and fill it with data.
+            Test_if_IFakeDatabase_was_saved_to_file_using_DataSet();
+
+            var fileStream = new FileStream(PATH, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
 
             var serializer = new FakeDbSerializer<XmlReader, XmlWriter>()
             {
