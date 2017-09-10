@@ -32,7 +32,7 @@ Project Name / Namespace Name | Description
 DEPENDENCY DIAGRAM (Where "Externals" are .NET Core libraries and Project-Required libraries. For example: "Newtonsoft.Json" for "KD.FakeDb.Serialization.JSON"):
 ---
 
-![](https://raw.githubusercontent.com/Sejoslaw/KD.FakeDb/master/img/Dependency/Dependency%20Diagram.PNG)
+![](https://raw.githubusercontent.com/Sejoslaw/KD.FakeDb/master/img/Dependency/Dependency%20Diagram%202.PNG)
 
 DONE:
 ---
