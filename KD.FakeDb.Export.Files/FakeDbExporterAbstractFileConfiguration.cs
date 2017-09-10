@@ -24,6 +24,6 @@ namespace KD.FakeDb.Export.Files
         /// <summary>
         /// Actual method which writes to <see cref="File"/>.
         /// </summary>
-        internal abstract void ExportToFile(FileStream stream, IFakeDatabase database);
+        protected abstract void ExportToFile(FileStream stream, IFakeDatabase database);
     }
 }

@@ -9,7 +9,7 @@ namespace KD.FakeDb.Export.Files.CSV
         /// It will export given <see cref="IFakeDatabase"/> using given <see cref="FileStream"/>.
         /// It will flush and close the given <see cref="FileStream"/>.
         /// </summary>
-        internal override void ExportToFile(FileStream stream, IFakeDatabase database)
+        protected override void ExportToFile(FileStream stream, IFakeDatabase database)
         {
             List<string> lines = new List<string>();
 
