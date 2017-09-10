@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Krzysztof Dobrzynski</Authors>
+    <Company>Krzysztof Dobrzynski</Company>
+    <Copyright>https://github.com/Sejoslaw</Copyright>
+    <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.Export</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>KD.FakeDb.Export.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KD.FakeDb\KD.FakeDb.csproj" />
+  </ItemGroup>
+
+</Project>

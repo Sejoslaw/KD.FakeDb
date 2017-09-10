@@ -35,6 +35,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KD.FakeDb.Converter.DataSet\KD.FakeDb.Converter.DataSet.csproj" />
+    <ProjectReference Include="..\KD.FakeDb.Export.Files\KD.FakeDb.Export.Files.csproj" />
+    <ProjectReference Include="..\KD.FakeDb.Export\KD.FakeDb.Export.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Factory\KD.FakeDb.Factory.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Linq\KD.FakeDb.Linq.csproj" />
     <ProjectReference Include="..\KD.FakeDb.Serialization.DataSet\KD.FakeDb.Serialization.DataSet.csproj" />
