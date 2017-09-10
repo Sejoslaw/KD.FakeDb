@@ -10,13 +10,16 @@ In-memory Fake Database. Made specially for Unit Tests.
 PROJECTS:
 ---
 
-Project Name | Description
+Project Name / Namespace Name | Description
 -------------|-------------
 **[KD.FakeDb](KD.FakeDb)** | Main project. Contains core interfaces and default implementation.
 **[KD.FakeDb.Connection](KD.FakeDb.Connection)** | Contains generic definition for parsing existing Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Connection.MSSQL](KD.FakeDb.Connection.MSSQL)** | Contains implementation for parsing Microsoft SQL (MSSQL) Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Connection.MySQL](KD.FakeDb.Connection.MySQL)** | Contains implementation for parsing MySQL Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Converter.DataSet](KD.FakeDb.Converter.DataSet)** | Extension method for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to convert it to and from [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
+**[KD.FakeDb.Export](KD.FakeDb.Export)** | Contains generic definition of [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs)'s Exporter.
+**[KD.FakeDb.Export.Files](KD.FakeDb.Export.Files)** | [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs)'s Exporter pre-configured for exporting to Files.
+**[KD.FakeDb.Export.Files.CSV](KD.FakeDb.Export.Files.CSV)** | Contains implementation for exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to CSV file.
 **[KD.FakeDb.Factory](KD.FakeDb.Factory)** | Factory which should be used to dynamically create new [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Linq](KD.FakeDb.Linq)** | Linq methods for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Serialization](KD.FakeDb.Serialization)** | Contains abstract definition for parsing [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
@@ -41,13 +44,14 @@ DONE:
 - [X] Added importing / exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to / from [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
 - [X] Added converting existing MySQL Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 - [X] Added converting existing Microsoft SQL (MSSQL) Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
+- [X] Added exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to CSV File Format.
 
 TODO:
 ---
 
 - [ ] Add Events (OnCreate, OnUpdate, OnDelete, etc.) as an extension.
-- [ ] Add importing / exporting Fake Database to / from Excel File Format or other File Format.
-- [ ] Add importing / exporting Fake Database to / from CRM.
+- [ ] Add exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to Excel File Format.
+- [ ] Add importing / exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to / from CRM.
 - [ ] Add support for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to read SQL Query.
 - [ ] Add support for reading other Databases (for instance: Oracle, PostreSQL, MongoDB, DB2, Microsoft Access, Cassandra, Redis, Elasticsearch, SQLite, MariaDB, Sybase, Teradata, Firebird, Derby, etc.).
 - [ ] Add support for Entity Framework to generate MDF file from [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
@@ -62,13 +66,59 @@ TUTORIALS:
   IFakeDatabase database = FakeDatabaseFactory.NewDatabase("New Test Database Name");
 ```
 
+1.1. Add data to Fake Database
+```csharp
+  public void Add_some_data_to_FakeDatabase()
+  {
+      // Create new Fake Database
+      IFakeDatabase db = FakeDatabaseFactory.NewDatabase("Test Database");
+      
+      // Create and return new Fake Table named "Accounts"
+      IFakeTable accTable = db.AddTable("Accounts");
+      
+      // Add few Fake Columns to Fake Table
+      // Specify Fake Columns Name and Type of data which can be added to Column
+      accTable.AddColumn("AccountId", typeof(Guid));
+      accTable.AddColumn("FirstName", typeof(string));
+      accTable.AddColumn("LastName", typeof(string));
+      accTable.AddColumn("CountryName", typeof(string));
+      
+      // Add few Fake Rows to Fake Table
+      
+      // Fake Row is created and returned dynamically
+      // You can add values to cells using Column Names
+      // 0 is an index of a new Fake Row
+      // If Fake Row with index 0 does not exists it will be created in real time; otherwise it will be returned
+      IFakeRow fakeRow = accTable.GetRow(0); 
+      fakeRow["AccountId"] = Guid.NewGuid();
+      fakeRow["FirstName"] = "Krzysztof";
+      fakeRow["LastName"] = "Dobrzynski";
+      fakeRow["CountryName"] = "Poland";
+      
+      // You can also fill Cells using right Cell index
+      fakeRow = accTable.GetRow(1);
+      fakeRow[0] = Guid.NewGuid();
+      fakeRow[1] = "Esteban";
+      fakeRow[2] = "Hulio";
+      fakeRow[3] = "Spain";
+      
+      fakeRow = accTable.GetRow(2);
+      fakeRow["AccountId"] = Guid.NewGuid();
+      fakeRow["FirstName"] = "A";
+      fakeRow["LastName"] = "B";
+      fakeRow["CountryName"] = "C";
+      
+      //...
+  }
+```
+
 2. Write Fake Database to XML (JSON looks similar)
 ```csharp
   public void Try_to_write_Database_to_XML()
   {
-      var db = FakeDatabaseData.GetDatabaseWithData(); // Method used in tests to create new Fake Database and fill it with random data.
-      var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
-      using (var writer = XmlWriter.Create(fileStream))
+      IFakeDatabase db = FakeDatabaseData.GetDatabaseWithData(); // Method used in tests to create new Fake Database and fill it with random data.
+      FileStream fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+      using (XmlWriter writer = XmlWriter.Create(fileStream))
       {
           var serializer = new FakeDbSerializer<XmlReader, XmlWriter>() // Serializer with given Xml Parameters, used to read / write Fake Database
           {
@@ -84,7 +134,7 @@ TUTORIALS:
 ```csharp
   public void Try_to_read_Database_from_XML()
   {
-      var fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+      FileStream fileStream = new FileStream("db.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
       var serializer = new FakeDbSerializer<XmlReader, XmlWriter>() // Serializer with given Xml Parameters, used to read / write Fake Database
       {
           // Database property is not specified because it will be created dynamically
@@ -92,7 +142,7 @@ TUTORIALS:
       };
       serializer.ReadDatabase(XDocument.Load(fileStream).CreateReader()); // Reads Fake Database and save it in serializer property
       
-      var db = serializer.Database; // Database readed from XML file
+      IFakeDatabase db = serializer.Database; // Database readed from XML file
   }
 ```
 
@@ -115,7 +165,7 @@ TUTORIALS:
 
       dbConn.ToFake("testdb49"); // This weird name is an actual Database Name. Database with this Name will be mapped to Connectors Fake Database.
 
-      var fakeDb = dbConn.Database; // Fake Database filled with data taken from MSSQL Database.
+      IFakeDatabase fakeDb = dbConn.Database; // Fake Database filled with data taken from MSSQL Database.
   }
 ```
 
@@ -127,7 +177,7 @@ TUTORIALS:
   
   public void Test_if_IFakeDatabase_was_converted_to_DataSet()
   {
-      var fakeDb = FakeDatabaseFactory.NewDatabase("New Test Database Name"); // New Fake Database
+      IFakeDatabase fakeDb = FakeDatabaseFactory.NewDatabase("New Test Database Name"); // New Fake Database
       
       //...Fill Fake Database with some data...
       
@@ -146,7 +196,7 @@ TUTORIALS:
   public void Test_if_DataSet_was_converted_to_IFakeDatabase(System.Data.DataSet dataSet) // DataSet which will be converted to IFakeDatabase
   {
       // Create new IFakeDatabase
-      var fakeDatabase = FakeDatabaseFactory.NewDatabase("Some random Database name that will be replaced after fill from DataSet.");
+      IFakeDatabase fakeDatabase = FakeDatabaseFactory.NewDatabase("Some random Database name that will be replaced after fill from DataSet.");
       
       // Fill IFakeDatabase with DataSet values
       dataSet.ToFakeDatabase(fakeDatabase);
