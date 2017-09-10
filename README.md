@@ -16,10 +16,11 @@ Project Name | Description
 **[KD.FakeDb.Connection](KD.FakeDb.Connection)** | Contains generic definition for parsing existing Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Connection.MSSQL](KD.FakeDb.Connection.MSSQL)** | Contains implementation for parsing Microsoft SQL (MSSQL) Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Connection.MySQL](KD.FakeDb.Connection.MySQL)** | Contains implementation for parsing MySQL Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
-**[KD.FakeDb.Converter.DataSet](KD.FakeDb.Converter.DataSet)** | Extension method for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to convert it to [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
+**[KD.FakeDb.Converter.DataSet](KD.FakeDb.Converter.DataSet)** | Extension method for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to convert it to and from [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
 **[KD.FakeDb.Factory](KD.FakeDb.Factory)** | Factory which should be used to dynamically create new [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Linq](KD.FakeDb.Linq)** | Linq methods for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Serialization](KD.FakeDb.Serialization)** | Contains abstract definition for parsing [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
+**[KD.FakeDb.Serialization.DataSet](KD.FakeDb.Serialization.DataSet)** | [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx) Serialization for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Serialization.JSON](KD.FakeDb.Serialization.JSON)** | JSON Serialization for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.Serialization.XML](KD.FakeDb.Serialization.XML)** | XML Serialization for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 **[KD.FakeDb.XUnitTests](KD.FakeDb.XUnitTests)** | Tests made with xUnit Framework.
@@ -31,8 +32,9 @@ DONE:
 
 - [X] Added Factory for static and dynamic Fake Database creation.
 - [X] Finished including remade Linq methods (Almost any basic FakeDb object implements IEnumerable).
-- [X] Added importing / exporting Fake Database to / from XML.
-- [X] Added importing / exporting Fake Database to / from JSON.
+- [X] Added importing / exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to / from XML.
+- [X] Added importing / exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to / from JSON.
+- [X] Added importing / exporting [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to / from [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
 - [X] Added converting existing MySQL Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 - [X] Added converting existing Microsoft SQL (MSSQL) Database to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs).
 
@@ -40,7 +42,6 @@ TODO:
 ---
 
 - [ ] Add Events (OnCreate, OnUpdate, OnDelete, etc.) as an extension.
-- [ ] Add serialization for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) using [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx).
 - [ ] Add importing / exporting Fake Database to / from Excel File Format or other File Format.
 - [ ] Add importing / exporting Fake Database to / from CRM.
 - [ ] Add support for [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs) to read SQL Query.
@@ -68,7 +69,7 @@ TUTORIALS:
           var serializer = new FakeDbSerializer<XmlReader, XmlWriter>() // Serializer with given Xml Parameters, used to read / write Fake Database
           {
               Database = db, // Database which will be written to file
-              Configuration = new FakeDbXMLByColumnConfiguration() // Default configuration used to read / write Fake Database
+              Configuration = new FakeDbXMLByColumnConfiguration() // Default configuration used to read / write Fake Database to / from XML File.
           };
           serializer.WriteDatabase(writer); // Write Fake Database to file
       }
@@ -83,7 +84,7 @@ TUTORIALS:
       var serializer = new FakeDbSerializer<XmlReader, XmlWriter>() // Serializer with given Xml Parameters, used to read / write Fake Database
       {
           // Database property is not specified because it will be created dynamically
-          Configuration = new FakeDbXMLByColumnConfiguration() // Default configuration used to read / write Fake Database
+          Configuration = new FakeDbXMLByColumnConfiguration() // Default configuration used to read / write Fake Database to / from XML File.
       };
       serializer.ReadDatabase(XDocument.Load(fileStream).CreateReader()); // Reads Fake Database and save it in serializer property
       
@@ -124,10 +125,28 @@ TUTORIALS:
   {
       var fakeDb = FakeDatabaseFactory.NewDatabase("New Test Database Name"); // New Fake Database
       
-      //...fill Fake Database with some data...
+      //...Fill Fake Database with some data...
       
       System.Data.DataSet dataSet = fakeDb.ToDataSet(); // Convert Fake Database to DataSet
       
       //...
+  }
+```
+
+6. Convert [System.Data.DataSet](https://msdn.microsoft.com/en-us/library/system.data.dataset.aspx) to [IFakeDatabase](https://github.com/Sejoslaw/KD.FakeDb/blob/master/KD.FakeDb/IFakeDatabase.cs)
+```csharp
+  using KD.FakeDb.Converter.DataSet;
+  
+  //...
+  
+  public void Test_if_DataSet_was_converted_to_IFakeDatabase(System.Data.DataSet dataSet) // DataSet which will be converted to IFakeDatabase
+  {
+      // Create new IFakeDatabase
+      var fakeDatabase = FakeDatabaseFactory.NewDatabase("Some random Database name that will be replaced after fill from DataSet.");
+      
+      // Fill IFakeDatabase with DataSet values
+      dataSet.ToFakeDatabase(fakeDatabase);
+      
+      //...Now IFakeDatabase is filled with values readed from DataSet...
   }
 ```
