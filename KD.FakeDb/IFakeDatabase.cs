@@ -4,6 +4,7 @@ namespace KD.FakeDb
 {
     /// <summary>
     /// Describes the main functionality of Fake Database.
+    /// This is the Core of Fake Database.
     /// </summary>
     public interface IFakeDatabase : ICollection<IFakeTable>
     {

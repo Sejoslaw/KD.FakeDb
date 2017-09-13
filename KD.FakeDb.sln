@@ -33,13 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Connection.MSSQL"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Converter.DataSet", "KD.FakeDb.Converter.DataSet\KD.FakeDb.Converter.DataSet.csproj", "{02F2801F-B98B-4022-9B5E-70570F2D2334}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Serialization.DataSet", "KD.FakeDb.Serialization.DataSet\KD.FakeDb.Serialization.DataSet.csproj", "{AE922E37-EF34-47B7-95E9-54357955672D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Serialization.DataSet", "KD.FakeDb.Serialization.DataSet\KD.FakeDb.Serialization.DataSet.csproj", "{AE922E37-EF34-47B7-95E9-54357955672D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Export", "KD.FakeDb.Export\KD.FakeDb.Export.csproj", "{E8045F4F-2C25-4EAE-8067-F073FC007936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Export", "KD.FakeDb.Export\KD.FakeDb.Export.csproj", "{E8045F4F-2C25-4EAE-8067-F073FC007936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Export.Files", "KD.FakeDb.Export.Files\KD.FakeDb.Export.Files.csproj", "{19802631-71F0-4BF6-BC02-C74A113FE536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Export.Files", "KD.FakeDb.Export.Files\KD.FakeDb.Export.Files.csproj", "{19802631-71F0-4BF6-BC02-C74A113FE536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.FakeDb.Export.Files.CSV", "KD.FakeDb.Export.Files.CSV\KD.FakeDb.Export.Files.CSV.csproj", "{7275440C-B3ED-4754-B869-371A9856DF3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KD.FakeDb.Export.Files.CSV", "KD.FakeDb.Export.Files.CSV\KD.FakeDb.Export.Files.CSV.csproj", "{7275440C-B3ED-4754-B869-371A9856DF3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

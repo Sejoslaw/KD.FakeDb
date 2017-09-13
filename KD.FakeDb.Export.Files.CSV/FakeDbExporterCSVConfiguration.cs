@@ -3,6 +3,9 @@ using System.IO;
 
 namespace KD.FakeDb.Export.Files.CSV
 {
+    /// <summary>
+    /// Configuration for <see cref="FakeDbExporter{TStream}"/> to export to CSV <see cref="File"/>.
+    /// </summary>
     public class FakeDbExporterCSVConfiguration : FakeDbExporterAbstractFileConfiguration
     {
         /// <summary>
