@@ -14,6 +14,16 @@ namespace KD.FakeDb.Connection
         where TDbDataReader : DbDataReader
     {
         /// <summary>
+        /// Delegate which determine what should happen after the record ahs been read successfully.
+        /// </summary>
+        /// <param name="fakeDatabase"> <see cref="IFakeDatabase"/> to which record was read. </param>
+        /// <param name="fakeTable"> <see cref="IFakeTable"/> to which record was read. </param>
+        /// <param name="fakeColumn"> <see cref="IFakeColumn"/> to which record was read. </param>
+        /// <param name="recordIndex"> Index of currently read record. </param>
+        /// <param name="tableColumnValue"> Value of currently read record. </param>
+        public delegate void RecordReadDelegate(IFakeDatabase fakeDatabase, IFakeTable fakeTable, IFakeColumn fakeColumn, int recordIndex, object tableColumnValue);
+
+        /// <summary>
         /// Database to which the information will be written.
         /// By default it should be empty but NOT null.
         /// </summary>
@@ -22,6 +32,29 @@ namespace KD.FakeDb.Connection
         /// Connection used to connect to Database.
         /// </summary>
         public TDbConnection Connection { get; set; }
+        /// <summary>
+        /// Delegate which determine what should happen after the record ahs been read successfully.
+        /// </summary>
+        public RecordReadDelegate OnRecordRead { get; set; }
+
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
+        public DatabaseConnection()
+        {
+            // Set default body for OnRecordRead delegate.
+            this.OnRecordRead += (fakeDatabase, fakeTable, fakeColumn, recordIndex, tableColumnValue) =>
+            {
+                // TODO: Add Check for right Type
+                //if (tableColumnValue.GetType() != fakeColumn.Type)
+                //{
+                //    throw new Exception(string.Format("Readded Column value type ({0}) is different than the Fake Column can take ({1}).", tableColumnValue.GetType(), fakeColumn.Type));
+                //}
+
+                // Be default just add the record to column.
+                fakeColumn.Add(new KeyValuePair<int, object>(recordIndex, tableColumnValue));
+            };
+        }
 
         /// <summary>
         /// Returns the Name of a Column which holds Table Names.
@@ -120,15 +153,8 @@ namespace KD.FakeDb.Connection
                         int tableColumnOrdinal = readerTable.GetOrdinal(fakeColumn.Name);
                         // Found Value
                         var tableColumnValue = readerTable.GetValue(tableColumnOrdinal);
-
-                        // TODO: Add Check for right Type
-                        //if (tableColumnValue.GetType() != fakeColumn.Type)
-                        //{
-                        //    throw new Exception(string.Format("Readded Column value type ({0}) is different than the Fake Column can take ({1}).", tableColumnValue.GetType(), fakeColumn.Type));
-                        //}
-
-                        // Add Record to Fake Database
-                        fakeColumn.Add(new KeyValuePair<int, object>(recordIndex, tableColumnValue));
+                        // Use delegate to add value to database
+                        OnRecordRead(Database, fakeTable, fakeColumn, recordIndex, tableColumnValue);
 
                         ++recordIndex;
                     }
