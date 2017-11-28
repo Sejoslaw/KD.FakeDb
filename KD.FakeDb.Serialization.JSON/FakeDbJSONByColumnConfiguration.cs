@@ -11,7 +11,7 @@ namespace KD.FakeDb.Serialization.JSON
     /// </summary>
     public class FakeDbJSONByColumnConfiguration : IFakeDbJSONConfiguration
     {
-        public void ReadDatabase(JsonReader reader, ref IFakeDatabase database)
+        public void ReadDatabase(JsonReader reader, IFakeDatabase database)
         {
             // Parse JSON
             var databaseJSON = JObject.Load(reader); // Load JSON Database object

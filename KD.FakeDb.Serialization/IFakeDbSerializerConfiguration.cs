@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="database"></param>
-        void ReadDatabase(TReader reader, ref IFakeDatabase database);
+        void ReadDatabase(TReader reader, IFakeDatabase database);
         /// <summary>
         /// Writes <see cref="IFakeDatabase"/> using specified <see cref="TWriter"/>.
         /// </summary>

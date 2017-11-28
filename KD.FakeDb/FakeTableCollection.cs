@@ -13,9 +13,9 @@ namespace KD.FakeDb
         /// <summary>
         /// For internal <see cref="IFakeTable"/>'s storing.
         /// </summary>
-        private ISet<IFakeTable> tables = new HashSet<IFakeTable>();
+        protected IList<IFakeTable> tables = new List<IFakeTable>();
 
-        public IFakeTable this[string tableName]
+        public virtual IFakeTable this[string tableName]
         {
             get
             {
@@ -23,7 +23,7 @@ namespace KD.FakeDb
             }
         }
 
-        public IFakeTable this[int tableIndex]
+        public virtual IFakeTable this[int tableIndex]
         {
             get
             {
@@ -54,7 +54,7 @@ namespace KD.FakeDb
             this.Database = fakeDatabase;
         }
 
-        public IFakeTable AddTable(string tableName)
+        public virtual IFakeTable AddTable(string tableName)
         {
             var tabs = (from tab in this.tables
                         where tab.Name.Equals(tableName)
@@ -70,7 +70,7 @@ namespace KD.FakeDb
             return newTable;
         }
 
-        public IFakeTable GetTable(string tableName)
+        public virtual IFakeTable GetTable(string tableName)
         {
             var tabs = (from tab in this.tables
                         where tab.Name.Equals(tableName)
@@ -84,7 +84,7 @@ namespace KD.FakeDb
             return tabs.First();
         }
 
-        public void RemoveTable(string tableName)
+        public virtual void RemoveTable(string tableName)
         {
             var tabs = (from tab in this.tables
                         where tab.Name.Equals(tableName)
@@ -98,7 +98,7 @@ namespace KD.FakeDb
             tables.Remove(tabs.First());
         }
 
-        public IEnumerator<IFakeTable> GetEnumerator()
+        public virtual IEnumerator<IFakeTable> GetEnumerator()
         {
             return this.tables.GetEnumerator();
         }
@@ -108,27 +108,27 @@ namespace KD.FakeDb
             return this.GetEnumerator();
         }
 
-        public void Add(IFakeTable item)
+        public virtual void Add(IFakeTable item)
         {
             this.tables.Add(item);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             this.tables.Clear();
         }
 
-        public bool Contains(IFakeTable item)
+        public virtual bool Contains(IFakeTable item)
         {
             return this.tables.Contains(item);
         }
 
-        public void CopyTo(IFakeTable[] array, int arrayIndex)
+        public virtual void CopyTo(IFakeTable[] array, int arrayIndex)
         {
             this.tables.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(IFakeTable item)
+        public virtual bool Remove(IFakeTable item)
         {
             return this.tables.Remove(item);
         }

@@ -10,7 +10,7 @@ namespace KD.FakeDb
     /// </summary>
     public class FakeRowCollection : IFakeRowCollection
     {
-        public IFakeRow this[int rowIndex]
+        public virtual IFakeRow this[int rowIndex]
         {
             get
             {
@@ -33,7 +33,7 @@ namespace KD.FakeDb
             this.Table = fakeTable;
         }
 
-        public bool AddRow(IFakeRow row)
+        public virtual bool AddRow(IFakeRow row)
         {
             var columnList = this.Table.ColumnCollection.ToList();
             var index = row.Index;
@@ -59,17 +59,17 @@ namespace KD.FakeDb
             return true;
         }
 
-        public IEnumerator<IFakeRow> GetEnumerator()
+        public virtual IEnumerator<IFakeRow> GetEnumerator()
         {
             return new FakeRowCollectionEnumerator(this);
         }
 
-        public IFakeRow GetRow(int rowIndex)
+        public virtual IFakeRow GetRow(int rowIndex)
         {
             return new FakeRow(this.Table, rowIndex);
         }
 
-        public void RemoveRow(int rowIndex)
+        public virtual void RemoveRow(int rowIndex)
         {
             this.Table.ColumnCollection.ToList().ForEach(column => column[rowIndex] = null);
         }

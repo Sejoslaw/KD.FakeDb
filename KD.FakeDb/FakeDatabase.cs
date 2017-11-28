@@ -8,7 +8,7 @@ namespace KD.FakeDb
     /// </summary>
     public class FakeDatabase : IFakeDatabase
     {
-        public IFakeTable this[string tableName]
+        public virtual IFakeTable this[string tableName]
         {
             get
             {
@@ -17,8 +17,7 @@ namespace KD.FakeDb
         }
 
         public string Name { get; set; }
-
-        public IFakeTableCollection TableCollection { get; }
+        public IFakeTableCollection TableCollection { get; protected set; }
 
         public int Count
         {
@@ -41,22 +40,22 @@ namespace KD.FakeDb
             this.TableCollection = new FakeTableCollection(this);
         }
 
-        public IFakeTable AddTable(string tableName)
+        public virtual IFakeTable AddTable(string tableName)
         {
             return this.TableCollection.AddTable(tableName);
         }
 
-        public IFakeTable GetTable(string tableName)
+        public virtual IFakeTable GetTable(string tableName)
         {
             return this.TableCollection.GetTable(tableName);
         }
 
-        public void RemoveTable(string tableName)
+        public virtual void RemoveTable(string tableName)
         {
             this.TableCollection.RemoveTable(tableName);
         }
 
-        public IEnumerator<IFakeTable> GetEnumerator()
+        public virtual IEnumerator<IFakeTable> GetEnumerator()
         {
             return this.TableCollection.GetEnumerator();
         }
@@ -66,27 +65,27 @@ namespace KD.FakeDb
             return this.GetEnumerator();
         }
 
-        public void Add(IFakeTable item)
+        public virtual void Add(IFakeTable item)
         {
             this.TableCollection.Add(item);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             this.TableCollection.Clear();
         }
 
-        public bool Contains(IFakeTable item)
+        public virtual bool Contains(IFakeTable item)
         {
             return this.TableCollection.Contains(item);
         }
 
-        public void CopyTo(IFakeTable[] array, int arrayIndex)
+        public virtual void CopyTo(IFakeTable[] array, int arrayIndex)
         {
             this.TableCollection.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(IFakeTable item)
+        public virtual bool Remove(IFakeTable item)
         {
             return this.TableCollection.Remove(item);
         }

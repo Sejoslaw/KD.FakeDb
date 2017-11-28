@@ -5,7 +5,7 @@ namespace KD.FakeDb.Serialization.DataSet
 {
     public class FakeDbDataSetConfiguration : IFakeDbDataSetConfiguration
     {
-        public void ReadDatabase(XmlReader reader, ref IFakeDatabase database)
+        public void ReadDatabase(XmlReader reader, IFakeDatabase database)
         {
             // Create DataSet
             var dataSet = new System.Data.DataSet();

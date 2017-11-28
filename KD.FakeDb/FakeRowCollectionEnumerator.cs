@@ -14,8 +14,8 @@ namespace KD.FakeDb
 
         object IEnumerator.Current { get; }
 
-        private IFakeRowCollection FakeRowCollection { get; }
-        private int CurrentIndex { get; set; }
+        protected IFakeRowCollection FakeRowCollection { get; }
+        protected int CurrentIndex { get; set; }
 
         public FakeRowCollectionEnumerator(IFakeRowCollection fakeRowCollection)
         {

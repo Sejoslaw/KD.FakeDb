@@ -13,9 +13,9 @@ namespace KD.FakeDb
         /// <summary>
         /// For internal <see cref="IFakeColumn"/>'s storing.
         /// </summary>
-        private List<IFakeColumn> columns = new List<IFakeColumn>();
+        protected IList<IFakeColumn> columns = new List<IFakeColumn>();
 
-        public IFakeColumn this[string columnName]
+        public virtual IFakeColumn this[string columnName]
         {
             get
             {
@@ -23,7 +23,7 @@ namespace KD.FakeDb
             }
         }
 
-        public IFakeColumn this[int columnIndex]
+        public virtual IFakeColumn this[int columnIndex]
         {
             get
             {
@@ -48,13 +48,13 @@ namespace KD.FakeDb
             this.Table = fakeTable;
         }
 
-        public IFakeColumn AddColumn(string columnName, Type columnObjectType)
+        public virtual IFakeColumn AddColumn(string columnName, Type columnObjectType)
         {
             var cols = (from col in this.columns
                         where col.Name.Equals(columnName)
                         select col);
 
-            if (cols.Count() != 0)
+            if (cols.Any())
             {
                 throw new Exception(string.Format("Column with name \"{0}\" already exists.", columnName));
             }
@@ -64,7 +64,7 @@ namespace KD.FakeDb
             return newColumn;
         }
 
-        public IFakeColumn GetColumn(string columnName)
+        public virtual IFakeColumn GetColumn(string columnName)
         {
             var cols = (from col in this.columns
                         where col.Name.Equals(columnName)
@@ -78,7 +78,7 @@ namespace KD.FakeDb
             return cols.First();
         }
 
-        public void RemoveColumn(string columnName)
+        public virtual void RemoveColumn(string columnName)
         {
             var cols = (from col in this.columns
                         where col.Name.Equals(columnName)
@@ -92,7 +92,7 @@ namespace KD.FakeDb
             this.columns.Remove(cols.First());
         }
 
-        public IEnumerator<IFakeColumn> GetEnumerator()
+        public virtual IEnumerator<IFakeColumn> GetEnumerator()
         {
             return this.columns.GetEnumerator();
         }
@@ -102,27 +102,27 @@ namespace KD.FakeDb
             return this.GetEnumerator();
         }
 
-        public void Add(IFakeColumn item)
+        public virtual void Add(IFakeColumn item)
         {
             this.columns.Add(item);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             this.columns.Clear();
         }
 
-        public bool Contains(IFakeColumn item)
+        public virtual bool Contains(IFakeColumn item)
         {
             return this.columns.Contains(item);
         }
 
-        public void CopyTo(IFakeColumn[] array, int arrayIndex)
+        public virtual void CopyTo(IFakeColumn[] array, int arrayIndex)
         {
             this.columns.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(IFakeColumn item)
+        public virtual bool Remove(IFakeColumn item)
         {
             return this.columns.Remove(item);
         }

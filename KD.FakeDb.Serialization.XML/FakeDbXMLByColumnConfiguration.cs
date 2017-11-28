@@ -11,7 +11,7 @@ namespace KD.FakeDb.Serialization.XML
     /// </summary>
     public class FakeDbXMLByColumnConfiguration : IFakeDbXMLConfiguration
     {
-        public void ReadDatabase(XmlReader reader, ref IFakeDatabase database)
+        public void ReadDatabase(XmlReader reader, IFakeDatabase database)
         {
             // XML Document
             var document = XDocument.Load(reader);

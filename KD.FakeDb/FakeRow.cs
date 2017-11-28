@@ -8,7 +8,7 @@ namespace KD.FakeDb
     /// </summary>
     public class FakeRow : IFakeRow
     {
-        public object this[string columnName]
+        public virtual object this[string columnName]
         {
             get
             {
@@ -20,7 +20,7 @@ namespace KD.FakeDb
             }
         }
 
-        public object this[int columnIndex]
+        public virtual object this[int columnIndex]
         {
             get
             {
@@ -51,7 +51,7 @@ namespace KD.FakeDb
             this.Index = index;
         }
 
-        public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
+        public virtual IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
             return new FakeRowEnumerator(this);
         }

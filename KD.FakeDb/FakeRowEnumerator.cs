@@ -12,8 +12,8 @@ namespace KD.FakeDb
     {
         public KeyValuePair<string, object> Current { get; private set; }
 
-        private IFakeRow Row { get; }
-        private int CurrentIndex { get; set; }
+        protected IFakeRow Row { get; }
+        protected int CurrentIndex { get; set; }
 
         object IEnumerator.Current
         {

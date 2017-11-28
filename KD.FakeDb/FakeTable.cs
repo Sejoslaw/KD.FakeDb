@@ -7,7 +7,7 @@ namespace KD.FakeDb
     /// </summary>
     public class FakeTable : IFakeTable
     {
-        public IFakeColumn this[string columnName]
+        public virtual IFakeColumn this[string columnName]
         {
             get
             {
@@ -15,7 +15,7 @@ namespace KD.FakeDb
             }
         }
 
-        public IFakeRow this[int rowIndex]
+        public virtual IFakeRow this[int rowIndex]
         {
             get
             {
@@ -25,10 +25,8 @@ namespace KD.FakeDb
 
         public string Name { get; set; }
 
-        public IFakeColumnCollection ColumnCollection { get; }
-
-        public IFakeRowCollection RowCollection { get; }
-
+        public IFakeColumnCollection ColumnCollection { get; protected set; }
+        public IFakeRowCollection RowCollection { get; protected set; }
         public IFakeDatabase Database { get; }
 
         public FakeTable(IFakeDatabase fakeDatabase, string tableName)
@@ -39,37 +37,37 @@ namespace KD.FakeDb
             this.RowCollection = new FakeRowCollection(this);
         }
 
-        public void AddColumn(IFakeColumn column)
+        public virtual void AddColumn(IFakeColumn column)
         {
             this.ColumnCollection.Add(column);
         }
 
-        public IFakeColumn AddColumn(string columnName, Type columnObjectType)
+        public virtual IFakeColumn AddColumn(string columnName, Type columnObjectType)
         {
             return this.ColumnCollection.AddColumn(columnName, columnObjectType);
         }
 
-        public bool AddRow(IFakeRow row)
+        public virtual bool AddRow(IFakeRow row)
         {
             return this.RowCollection.AddRow(row);
         }
 
-        public IFakeColumn GetColumn(string columnName)
+        public virtual IFakeColumn GetColumn(string columnName)
         {
             return this.ColumnCollection.GetColumn(columnName);
         }
 
-        public IFakeRow GetRow(int rowIndex)
+        public virtual IFakeRow GetRow(int rowIndex)
         {
             return this.RowCollection.GetRow(rowIndex);
         }
 
-        public void RemoveColumn(string columnName)
+        public virtual void RemoveColumn(string columnName)
         {
             this.ColumnCollection.RemoveColumn(columnName);
         }
 
-        public void RemoveRow(int rowIndex)
+        public virtual void RemoveRow(int rowIndex)
         {
             this.RowCollection.RemoveRow(rowIndex);
         }

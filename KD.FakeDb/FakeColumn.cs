@@ -14,9 +14,9 @@ namespace KD.FakeDb
         /// Key - Column Index
         /// Value - Connected Value on this index
         /// </summary>
-        private IDictionary<int, object> objects;
+        protected IDictionary<int, object> objects;
 
-        public object this[int index]
+        public virtual object this[int index]
         {
             get
             {
@@ -71,7 +71,7 @@ namespace KD.FakeDb
             this.objects = new Dictionary<int, object>();
         }
 
-        public IEnumerator<KeyValuePair<int, object>> GetEnumerator()
+        public virtual IEnumerator<KeyValuePair<int, object>> GetEnumerator()
         {
             return this.objects.GetEnumerator();
         }
@@ -81,27 +81,27 @@ namespace KD.FakeDb
             return this.GetEnumerator();
         }
 
-        public void Add(KeyValuePair<int, object> item)
+        public virtual void Add(KeyValuePair<int, object> item)
         {
             this.objects.Add(item);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             this.objects.Clear();
         }
 
-        public bool Contains(KeyValuePair<int, object> item)
+        public virtual bool Contains(KeyValuePair<int, object> item)
         {
             return this.objects.Contains(item);
         }
 
-        public void CopyTo(KeyValuePair<int, object>[] array, int arrayIndex)
+        public virtual void CopyTo(KeyValuePair<int, object>[] array, int arrayIndex)
         {
             this.objects.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(KeyValuePair<int, object> item)
+        public virtual bool Remove(KeyValuePair<int, object> item)
         {
             return this.objects.Remove(item);
         }

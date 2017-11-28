@@ -70,7 +70,7 @@ namespace KD.FakeDb.Serialization
         /// <param name="reader"> Reader which will be used to read <see cref="IFakeDatabase"/>. </param>
         public void ReadDatabase(TReader reader)
         {
-            this.Configuration.ReadDatabase(reader, ref this._database);
+            this.Configuration.ReadDatabase(reader, this._database);
         }
 
         /// <summary>
