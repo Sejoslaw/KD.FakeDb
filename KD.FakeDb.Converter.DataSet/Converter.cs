@@ -17,13 +17,13 @@ namespace KD.FakeDb.Converter.DataSet
             var dataSet = new System.Data.DataSet(database.Name);
 
             // For Each IFakeTable create new DataTable
-            foreach (var fakeTable in database.TableCollection)
+            foreach (var fakeTable in database.Tables)
             {
                 // Create new DataTable from IFakeTable
                 var dataTable = new DataTable(fakeTable.Name);
 
                 // For Each IFakeTable create new DataTable
-                foreach (var fakeColumn in fakeTable.ColumnCollection)
+                foreach (var fakeColumn in fakeTable.Columns)
                 {
                     // Create and add new DataColumn to DataTable
                     var dataColumn = new DataColumn(fakeColumn.Name, fakeColumn.Type);
@@ -31,7 +31,7 @@ namespace KD.FakeDb.Converter.DataSet
                 }
 
                 // For Each IFakeRow add new DataRow to DataTable
-                foreach (var fakeRow in fakeTable.RowCollection)
+                foreach (var fakeRow in fakeTable.Rows)
                 {
                     // Create new DataRow
                     var dataRow = dataTable.NewRow();

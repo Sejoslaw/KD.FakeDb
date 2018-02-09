@@ -37,9 +37,9 @@ namespace KD.FakeDb.Linq
 
             IDictionary<IFakeTable, HashSet<IFakeRow>> results = new Dictionary<IFakeTable, HashSet<IFakeRow>>();
 
-            foreach (var table in source.TableCollection)
+            foreach (var table in source.Tables)
             {
-                foreach (var row in table.RowCollection)
+                foreach (var row in table.Rows)
                 {
                     bool shouldBeAdded = true;
                     foreach (var condition in conditions)

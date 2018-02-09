@@ -26,14 +26,14 @@ namespace KD.FakeDb
                 }
                 catch (KeyNotFoundException)
                 {
-                    throw new KeyNotFoundException(string.Format("The given key ({0}) was not present in the dictionary.", index));
+                    throw new KeyNotFoundException($"The given key ({ index }) was not present in the dictionary.");
                 }
             }
             set
             {
                 if (value.GetType() != this.Type)
                 {
-                    throw new Exception(string.Format("Value with wrong type was tried to be added to this Column (Value Type = {0}). This Column accepts values with type = {1}", value.GetType(), this.Type));
+                    throw new Exception($"Value with wrong type was tried to be added to this Column (Value Type = { value.GetType() }). This Column accepts values with type = { this.Type }");
                 }
 
                 this.objects[index] = value;

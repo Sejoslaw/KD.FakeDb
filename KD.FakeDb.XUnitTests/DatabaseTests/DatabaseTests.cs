@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Linq;
+using Xunit;
 
 namespace KD.FakeDb.XUnitTests.DatabaseTests
 {
@@ -10,8 +11,8 @@ namespace KD.FakeDb.XUnitTests.DatabaseTests
             var db = FakeDatabaseData.GetDatabaseWithData();
             var accTable = db["Accounts"];
 
-            Assert.True(4 <= accTable.ColumnCollection.Count);
-            Assert.True(4 <= accTable.RowCollection.Count);
+            Assert.True(4 <= accTable.Columns.Count());
+            Assert.True(4 <= accTable.Rows.Count());
             Assert.Equal("Krzysztof", accTable.GetRow(0)["FirstName"]);
         }
     }

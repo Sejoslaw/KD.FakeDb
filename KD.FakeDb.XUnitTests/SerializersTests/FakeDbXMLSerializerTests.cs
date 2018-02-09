@@ -2,6 +2,7 @@
 using KD.FakeDb.Serialization.XML;
 using System;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using Xunit;
@@ -54,7 +55,7 @@ namespace KD.FakeDb.XUnitTests.XMLTests
 
             Assert.True(db != null);
             Assert.Equal("Test Database", db.Name);
-            Assert.True(db.TableCollection.Count == 2);
+            Assert.True(db.Tables.Count() == 2);
             Assert.Equal("Poland", db["Countries"]["CountryName"][0]);
         }
     }

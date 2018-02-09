@@ -9,6 +9,7 @@
     <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
     <Authors>Krzysztof Dobrzynski</Authors>
     <Copyright>https://github.com/Sejoslaw</Copyright>
+    <Product>KD.FakeDb</Product>
   </PropertyGroup>
 
 </Project>

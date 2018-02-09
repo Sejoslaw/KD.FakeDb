@@ -148,7 +148,7 @@ namespace KD.FakeDb.Connection
                 while (readerTable.Read())
                 {
                     // For each Fake Column check name and try to read value of current row and add it to Fake Column
-                    foreach (var fakeColumn in fakeTable.ColumnCollection)
+                    foreach (var fakeColumn in fakeTable.Columns)
                     {
                         int tableColumnOrdinal = readerTable.GetOrdinal(fakeColumn.Name);
                         // Found Value

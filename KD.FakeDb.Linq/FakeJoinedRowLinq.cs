@@ -20,7 +20,7 @@ namespace KD.FakeDb.Linq
         {
             List<IFakeJoinedRow> list = new List<IFakeJoinedRow>();
 
-            table.RowCollection.ForEach(row =>
+            table.Rows.ForEach(row =>
             {
                 if (source.CanJoinRow(row, columnName))
                 {

@@ -35,7 +35,7 @@ namespace KD.FakeDb.Linq
 
             List<IFakeRow> results = new List<IFakeRow>();
 
-            foreach (var row in source.RowCollection.ToList())
+            foreach (var row in source.Rows.ToList())
             {
                 bool shouldBeAdded = true;
                 foreach (var condition in conditions)

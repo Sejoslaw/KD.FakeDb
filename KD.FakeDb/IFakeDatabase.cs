@@ -14,17 +14,16 @@ namespace KD.FakeDb
         /// <param name="tableName"> Name of the <see cref="IFakeTable"/>. </param>
         /// <returns> Returns <see cref="IFakeTable"/> connected with given name. </returns>
         /// <exception cref="System.ArgumentException"></exception>
-        IFakeTable this[string tableName] { get; }
+        IFakeTable this[string tableName] { get; set; }
 
         /// <summary>
         /// Returns the Name of Database.
         /// </summary>
         string Name { get; set; }
-
         /// <summary>
-        /// Returns a <see cref="IFakeTableCollection"/> of Tables which this <see cref="IFakeDatabase"/> contains.
+        /// Returns a collection of Tables which this <see cref="IFakeDatabase"/> contains.
         /// </summary>
-        IFakeTableCollection TableCollection { get; }
+        IEnumerable<IFakeTable> Tables { get; }
 
         /// <summary>
         /// Adds new <see cref="IFakeTable"/> to this <see cref="IFakeDatabase"/> with given name.

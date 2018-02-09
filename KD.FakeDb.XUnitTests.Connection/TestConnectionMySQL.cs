@@ -4,6 +4,7 @@ using KD.FakeDb.Serialization;
 using KD.FakeDb.Serialization.XML;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using Xunit;
 
@@ -42,7 +43,7 @@ namespace KD.FakeDb.XUnitTests.Connection
                 serializer.WriteDatabase(writer);
             }
 
-            Assert.True(fakeDb.TableCollection.Count > 0);
+            Assert.True(fakeDb.Tables.Count() > 0);
         }
     }
 }

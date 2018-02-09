@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KD.FakeDb
 {
@@ -12,11 +13,24 @@ namespace KD.FakeDb
         {
             get
             {
-                return this.Table.ColumnCollection[columnName][this.Index];
+                IFakeColumn col = this.Table.GetColumn(columnName);
+
+                if (col == null)
+                {
+                    return null;
+                }
+
+                object value = col[this.Index];
+                return value;
             }
             set
             {
-                this.Table.ColumnCollection[columnName][this.Index] = value;
+                IFakeColumn col = this.Table.GetColumn(columnName);
+
+                if (col != null)
+                {
+                    col[this.Index] = value;
+                }
             }
         }
 
@@ -24,11 +38,14 @@ namespace KD.FakeDb
         {
             get
             {
-                return this.Table.ColumnCollection[columnIndex][this.Index];
+                IFakeColumn col = this.Table.Columns.ElementAt(columnIndex);
+                object value = col[this.Index];
+                return value;
             }
             set
             {
-                this.Table.ColumnCollection[columnIndex][this.Index] = value;
+                IFakeColumn col = this.Table.Columns.ElementAt(columnIndex);
+                col[this.Index] = value;
             }
         }
 
@@ -39,7 +56,7 @@ namespace KD.FakeDb
             get
             {
                 // Number of elements in one row is a number of columns.
-                return this.Table.ColumnCollection.Count;
+                return this.Table.Columns.Count();
             }
         }
 
@@ -53,7 +70,11 @@ namespace KD.FakeDb
 
         public virtual IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-            return new FakeRowEnumerator(this);
+            foreach (IFakeColumn column in this.Table.Columns)
+            {
+                object value = column[this.Index];
+                yield return new KeyValuePair<string, object>(column.Name, value);
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

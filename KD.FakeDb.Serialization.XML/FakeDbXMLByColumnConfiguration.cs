@@ -100,10 +100,10 @@ namespace KD.FakeDb.Serialization.XML
                         writer.WriteStartElement(FakeDbConstants.LabelTable); // Write Table
                         writer.WriteAttributeString(FakeDbConstants.AttributeClass, table.GetType().AssemblyQualifiedName); // Table Class
                         writer.WriteAttributeString(FakeDbConstants.AttributeName, table.Name); // Table Name
-                        writer.WriteAttributeString(FakeDbConstants.AttributeColumns, table.ColumnCollection.Count.ToString()); // Columns Count
-                        writer.WriteAttributeString(FakeDbConstants.AttributeRows, table.RowCollection.Count.ToString()); // Rows Count
+                        writer.WriteAttributeString(FakeDbConstants.AttributeColumns, table.Columns.Count().ToString()); // Columns Count
+                        writer.WriteAttributeString(FakeDbConstants.AttributeRows, table.Rows.Count().ToString()); // Rows Count
                         {
-                            table.ColumnCollection.ToList().ForEach(column =>
+                            table.Columns.ToList().ForEach(column =>
                             {
                                 writer.WriteStartElement(FakeDbConstants.LabelColumn); // Write Column
                                 writer.WriteAttributeString(FakeDbConstants.AttributeClass, column.GetType().AssemblyQualifiedName); // Column Class

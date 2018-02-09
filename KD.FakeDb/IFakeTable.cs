@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KD.FakeDb
 {
@@ -14,7 +15,6 @@ namespace KD.FakeDb
         /// <returns> Returns <see cref="IFakeColumn"/> connected with given column name. </returns>
         /// <exception cref="System.ArgumentException"></exception>
         IFakeColumn this[string columnName] { get; }
-
         /// <summary>
         /// Returns <see cref="IFakeRow"/> from given Row index if Row exists; otherwise <see cref="System.ArgumentException"/> will be thrown.
         /// </summary>
@@ -26,17 +26,14 @@ namespace KD.FakeDb
         /// Returns the Name of this <see cref="IFakeTable"/>.
         /// </summary>
         string Name { get; set; }
-
         /// <summary>
-        /// Returns a <see cref="IFakeColumnCollection"/> of Columns which this <see cref="IFakeTable"/> contains.
+        /// Returns a <see cref="IEnumerable{IFakeColumn}"/> of Columns which this <see cref="IFakeTable"/> contains.
         /// </summary>
-        IFakeColumnCollection ColumnCollection { get; }
-
+        IEnumerable<IFakeColumn> Columns { get; }
         /// <summary>
-        /// Returns a <see cref="IFakeRowCollection"/> of Rows which this <see cref="IFakeTable"/> contains.
+        /// Returns a <see cref="IEnumerable{IFakeRow}"/> of Rows which this <see cref="IFakeTable"/> contains.
         /// </summary>
-        IFakeRowCollection RowCollection { get; }
-
+        IEnumerable<IFakeRow> Rows { get; }
         /// <summary>
         /// Returns <see cref="IFakeDatabase"/> to which this Table belongs.
         /// </summary>
@@ -68,6 +65,12 @@ namespace KD.FakeDb
         /// <returns></returns>
         /// <exception cref="System.ArgumentException"></exception>
         IFakeColumn GetColumn(string columnName);
+        /// <summary>
+        /// Adds new row at specified index.
+        /// </summary>
+        /// <param name="rowIndex"></param>
+        /// <returns></returns>
+        IFakeRow AddRow(int rowIndex);
         /// <summary>
         /// Adds new <see cref="IFakeRow"/> to this <see cref="IFakeTable"/> with given name.
         /// </summary>

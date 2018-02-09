@@ -20,7 +20,7 @@ namespace KD.FakeDb.Export.Files.CSV
             lines.Add(database.Name);
 
             // Add Each Table to String Builder
-            foreach (var table in database.TableCollection)
+            foreach (var table in database.Tables)
             {
                 lines.Add("");
                 // Add Table Name
@@ -28,14 +28,14 @@ namespace KD.FakeDb.Export.Files.CSV
 
                 // Add Column Names from Table
                 string columnNames = "";
-                foreach (var column in table.ColumnCollection)
+                foreach (var column in table.Columns)
                 {
                     columnNames += column.Name + ",";
                 }
                 lines.Add(columnNames);
 
                 // Add each Row from current Table
-                foreach (var row in table.RowCollection)
+                foreach (var row in table.Rows)
                 {
                     string rowValues = "";
                     foreach (var record in row)

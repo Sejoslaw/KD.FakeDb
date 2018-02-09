@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KD.FakeDb
 {
@@ -12,18 +14,23 @@ namespace KD.FakeDb
         {
             get
             {
-                return this.TableCollection[tableName];
+                IFakeTable table = this.Tables.Where(tab => tab.Name.Equals(tableName)).FirstOrDefault();
+                return table;
+            }
+            set
+            {
+                this.AddTable(tableName);
             }
         }
 
         public string Name { get; set; }
-        public IFakeTableCollection TableCollection { get; protected set; }
+        public IEnumerable<IFakeTable> Tables { get; protected set; }
 
         public int Count
         {
             get
             {
-                return this.TableCollection.Count;
+                return this.Tables.Count();
             }
         }
 
@@ -31,33 +38,62 @@ namespace KD.FakeDb
         {
             get
             {
-                return this.TableCollection.IsReadOnly;
+                return false;
             }
         }
 
         public FakeDatabase()
         {
-            this.TableCollection = new FakeTableCollection(this);
+            this.Tables = new HashSet<IFakeTable>();
         }
 
         public virtual IFakeTable AddTable(string tableName)
         {
-            return this.TableCollection.AddTable(tableName);
+            var tabs = (from tab in this.Tables
+                        where tab.Name.Equals(tableName)
+                        select tab).ToList();
+
+            if (tabs.Any())
+            {
+                throw new Exception($"Table with name \"{ tableName }\" already exists.");
+            }
+
+            var newTable = this.NewTable(tableName);
+            this.Add(newTable);
+            return newTable;
         }
 
         public virtual IFakeTable GetTable(string tableName)
         {
-            return this.TableCollection.GetTable(tableName);
+            var tabs = (from tab in this.Tables
+                        where tab.Name.Equals(tableName)
+                        select tab).ToList();
+
+            if (tabs.Count() > 1)
+            {
+                throw new Exception($"There is none or multiple Tables with name \"{ tableName }\"");
+            }
+
+            return tabs.FirstOrDefault();
         }
 
         public virtual void RemoveTable(string tableName)
         {
-            this.TableCollection.RemoveTable(tableName);
+            var tabs = (from tab in this.Tables
+                        where tab.Name.Equals(tableName)
+                        select tab).ToList();
+
+            if (tabs.Count() > 1)
+            {
+                throw new Exception($"There is none or multiple Tables with name \"{ tableName }\"");
+            }
+
+            this.Remove(tabs.FirstOrDefault());
         }
 
         public virtual IEnumerator<IFakeTable> GetEnumerator()
         {
-            return this.TableCollection.GetEnumerator();
+            return this.Tables.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -67,27 +103,37 @@ namespace KD.FakeDb
 
         public virtual void Add(IFakeTable item)
         {
-            this.TableCollection.Add(item);
+            this.Cast().Add(item);
         }
 
         public virtual void Clear()
         {
-            this.TableCollection.Clear();
+            this.Cast().Clear();
         }
 
         public virtual bool Contains(IFakeTable item)
         {
-            return this.TableCollection.Contains(item);
+            return this.Cast().Contains(item);
         }
 
         public virtual void CopyTo(IFakeTable[] array, int arrayIndex)
         {
-            this.TableCollection.CopyTo(array, arrayIndex);
+            this.Cast().CopyTo(array, arrayIndex);
         }
 
         public virtual bool Remove(IFakeTable item)
         {
-            return this.TableCollection.Remove(item);
+            return this.Cast().Remove(item);
+        }
+
+        protected virtual IFakeTable NewTable(string tableName)
+        {
+            return new FakeTable(this, tableName);
+        }
+
+        private HashSet<IFakeTable> Cast()
+        {
+            return this.Tables as HashSet<IFakeTable>;
         }
     }
 }

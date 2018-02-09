@@ -20,12 +20,10 @@ namespace KD.FakeDb
         /// Returns the Name of this <see cref="IFakeColumn"/>.
         /// </summary>
         string Name { get; set; }
-
         /// <summary>
         /// Returns the <see cref="System.Type"/> of the objects which can be stored in this <see cref="IFakeColumn"/>.
         /// </summary>
         Type Type { get; }
-
         /// <summary>
         /// Returns the <see cref="IFakeTable"/> which contains this <see cref="IFakeColumn"/>.
         /// </summary>

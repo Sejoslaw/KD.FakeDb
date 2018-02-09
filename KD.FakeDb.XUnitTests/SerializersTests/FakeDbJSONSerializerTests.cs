@@ -3,6 +3,7 @@ using KD.FakeDb.Serialization.JSON;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using Xunit;
 
 namespace KD.FakeDb.XUnitTests.JSONTests
@@ -53,7 +54,7 @@ namespace KD.FakeDb.XUnitTests.JSONTests
 
                 Assert.True(db != null);
                 Assert.Equal("Test Database", db.Name);
-                Assert.True(db.TableCollection.Count == 2);
+                Assert.True(db.Tables.Count() == 2);
                 Assert.Equal("Poland", db["Countries"]["CountryName"][0]);
             }
         }

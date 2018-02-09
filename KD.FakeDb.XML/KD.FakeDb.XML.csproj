@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Krzysztof Dobrzynski</Authors>
+    <Company>Krzysztof Dobrzynski</Company>
+    <Product>KD.FakeDb.XML</Product>
+    <Copyright>https://github.com/Sejoslaw</Copyright>
+    <PackageLicenseUrl>https://github.com/Sejoslaw/KD.FakeDb/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Sejoslaw/KD.FakeDb/tree/master/KD.FakeDb.XML</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Sejoslaw/KD.FakeDb</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>KD.FakeDb.XML.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KD.FakeDb\KD.FakeDb.csproj" />
+  </ItemGroup>
+
+</Project>

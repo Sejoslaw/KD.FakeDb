@@ -14,7 +14,6 @@ namespace KD.FakeDb
         /// <returns></returns>
         /// <exception cref="System.ArgumentException"></exception>
         object this[string columnName] { get; set; }
-
         /// <summary>
         /// Returns the value in this <see cref="IFakeRow"/> from specified <see cref="IFakeColumn"/>'s Index. If column don't exists <see cref="System.ArgumentException"/> wil be thrown.
         /// </summary>
@@ -26,12 +25,10 @@ namespace KD.FakeDb
         /// Returns the Index in <see cref="IFakeTable"/> of this <see cref="IFakeRow"/>.
         /// </summary>
         int Index { get; }
-
         /// <summary>
         /// Returns the number of elements in this <see cref="IFakeRow"/>. This should be equal with <see cref="IFakeColumnCollection.Count"/>.
         /// </summary>
         int Count { get; }
-
         /// <summary>
         /// Returns the <see cref="IFakeTable"/> which contains this <see cref="IFakeRow"/>.
         /// </summary>

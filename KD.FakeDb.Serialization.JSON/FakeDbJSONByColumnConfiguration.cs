@@ -91,12 +91,12 @@ namespace KD.FakeDb.Serialization.JSON
                                 writer.WritePropertyName(FakeDbConstants.LabelTable); writer.WriteValue(""); // Write Table label
                                 writer.WritePropertyName(FakeDbConstants.PropertyClass); writer.WriteValue(table.GetType().AssemblyQualifiedName); // Table Class
                                 writer.WritePropertyName(FakeDbConstants.PropertyName); writer.WriteValue(table.Name); // Table Name
-                                writer.WritePropertyName(FakeDbConstants.PropertyColumns); writer.WriteValue(table.ColumnCollection.Count); // Columns Count
-                                writer.WritePropertyName(FakeDbConstants.PropertyRows); writer.WriteValue(table.RowCollection.Count); // Rows Count
+                                writer.WritePropertyName(FakeDbConstants.PropertyColumns); writer.WriteValue(table.Columns.Count()); // Columns Count
+                                writer.WritePropertyName(FakeDbConstants.PropertyRows); writer.WriteValue(table.Rows.Count()); // Rows Count
                                 writer.WritePropertyName(FakeDbConstants.LabelColumn);
                                 writer.WriteStartArray();
                                 {
-                                    table.ColumnCollection.ToList().ForEach(column =>
+                                    table.Columns.ToList().ForEach(column =>
                                     {
                                         writer.WriteStartObject(); // Table object
                                         {
