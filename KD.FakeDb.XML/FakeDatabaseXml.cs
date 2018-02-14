@@ -47,7 +47,7 @@ namespace KD.FakeDb.XML
                 {
                     if (fi.Extension.ToLower().Equals("xml"))
                     {
-                        yield return new FakeTableXml(this, fi);
+                        yield return new FakeTableXml(this, fi.Name);
                     }
                 }
             }
@@ -68,7 +68,19 @@ namespace KD.FakeDb.XML
             }
         }
 
-        public IFakeTable this[string tableName] { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public IFakeTable this[string tableName]
+        {
+            get
+            {
+                IFakeTable table = this.GetTable(tableName);
+                return table;
+            }
+            set
+            {
+                this.RemoveTable(tableName);
+                this.Add(value);
+            }
+        }
 
         public FakeDatabaseXml(string path)
         {
@@ -79,42 +91,72 @@ namespace KD.FakeDb.XML
 
         public IFakeTable AddTable(string tableName)
         {
-            throw new System.NotImplementedException();
+            this.Add(new FakeTableXml(this, tableName));
+            IFakeTable table = this[tableName];
+            return table;
         }
 
         public void RemoveTable(string tableName)
         {
-            throw new System.NotImplementedException();
+            FileInfo tableFile = this.DatabaseDirectory.GetFiles().Where(file => file.Name.Equals(tableName)).FirstOrDefault();
+
+            if (tableFile != null)
+            {
+                tableFile.Delete();
+            }
+            else
+            {
+                throw new ArgumentException($"Table with name: [{ tableName }] does not exist.", "tableName");
+            }
         }
 
         public IFakeTable GetTable(string tableName)
         {
-            throw new System.NotImplementedException();
+            IFakeTable table = this.Tables.Where(tab => tab.Name.Equals(tableName)).FirstOrDefault();
+            return table;
         }
 
         public void Add(IFakeTable item)
         {
-            throw new System.NotImplementedException();
+            string xml = XmlUtils.Parse(item);
+            string path = Path.Combine(this.DirectoryPath, $"{ item.Name }.xml");
+
+            using (StreamWriter writer = File.CreateText(path))
+            {
+                writer.Write(xml);
+                writer.Flush();
+                writer.Close();
+            }
         }
 
         public void Clear()
         {
-            throw new System.NotImplementedException();
+            this.DatabaseDirectory.GetFiles().ToList().ForEach(file => file.Delete());
         }
 
         public bool Contains(IFakeTable item)
         {
-            throw new System.NotImplementedException();
+            bool ret = this.Tables.Where(file => file.Name.Equals(item.Name)).Any();
+            return ret;
         }
 
         public void CopyTo(IFakeTable[] array, int arrayIndex)
         {
-            throw new System.NotImplementedException();
+            if (array.Length != this.Tables.Count())
+            {
+                throw new ArgumentException($"Can't copy Tables to array. Array size is different than current number of Tables.", "array");
+            }
+
+            for (int i = 0; i < array.Length; ++i)
+            {
+                array[i] = this.Tables.ElementAt(i);
+            }
         }
 
         public bool Remove(IFakeTable item)
         {
-            throw new System.NotImplementedException();
+            this.RemoveTable(item.Name);
+            return true;
         }
 
         public IEnumerator<IFakeTable> GetEnumerator()
